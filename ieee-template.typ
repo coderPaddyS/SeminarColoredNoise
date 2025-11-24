@@ -3,7 +3,7 @@
 #let ieee(
   // The paper's title.
   title: [Paper Title],
-
+  seminar: none,
   // An array of authors. For each author you can specify a name,
   // department, organization, location, and email. Everything but
   // but the name is optional.
@@ -24,6 +24,7 @@
   // How figures are referred to from within the text.
   // Use "Figure" instead of "Fig." for computer-related publications.
   figure-supplement: [Fig.],
+  appendix: none,
 
   // The paper's content.
   body
@@ -34,7 +35,7 @@
   // Set the body font.
   // As of 2024-08, the IEEE LaTeX template uses wider interword spacing
   // - See e.g. the definition \def\@IEEEinterspaceratioM{0.35} in IEEEtran.cls
-  set text(font: "TeX Gyre Termes", size: 10pt, spacing: .35em)
+  set text(font: "TeX Gyre Termes", size: 10pt, spacing: .35em, lang: "de")
 
   // Enums numbering
   set enum(numbering: "1)a)i)")
@@ -89,6 +90,12 @@
         x: (50pt / 216mm) * 100%,
         top: (55pt / 279mm) * 100%,
         bottom: (64pt / 279mm) * 100%,
+      )
+    },
+    header: context {
+      grid(columns: (1fr, 0.1cm), 
+        upper(seminar),
+        counter(page).display("1")
       )
     }
   )
@@ -238,4 +245,24 @@
 
   // Display bibliography.
   bibliography
+
+  if appendix != none {
+    counter(heading).update(0)
+    show heading: it => {
+      set text(10pt, weight: 400)
+      set align(center)
+      show: block.with(spacing: 10pt, sticky: true)
+      set text(11pt)
+      show: block.with(above: 15pt, below: 13.75pt, sticky: true)
+      show: smallcaps
+      if it.numbering != none {
+        numbering("A.", 1)
+        h(7pt, weak: true)
+      }
+      [#(it.body):]
+    }
+
+    [= Appendix]
+    appendix
+  }
 }
