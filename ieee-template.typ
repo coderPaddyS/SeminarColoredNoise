@@ -31,11 +31,12 @@
 ) = {
   // Set document metadata.
   set document(title: title, author: authors.map(author => author.name))
-
+  set math.equation(numbering: "1.")
   // Set the body font.
   // As of 2024-08, the IEEE LaTeX template uses wider interword spacing
   // - See e.g. the definition \def\@IEEEinterspaceratioM{0.35} in IEEEtran.cls
   set text(font: "TeX Gyre Termes", size: 10pt, spacing: .35em, lang: "de")
+  // set text(font: "New Computer Modern", size: 10pt, spacing: .35em, lang: "de")
 
   // Enums numbering
   set enum(numbering: "1)a)i)")
@@ -64,7 +65,7 @@
     // Wrap figure captions in block to prevent the creation of paragraphs. In
     // particular, this means `par.first-line-indent` does not apply.
     // See https://github.com/typst/templates/pull/73#discussion_r2112947947.
-    show figure.caption: it => block[#prefix~#numbers#it.separator#it.body]
+    // show figure.caption: it => block[#prefix~#numbers#it.separator#it.body]
     show figure.caption.where(kind: table): smallcaps
     fig
   }
@@ -93,7 +94,7 @@
       )
     },
     header: context {
-      grid(columns: (1fr, 0.1cm), 
+      grid(columns: (1fr, 0.1cm),
         upper(seminar),
         counter(page).display("1")
       )
