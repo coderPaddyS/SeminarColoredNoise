@@ -1,5 +1,5 @@
 #import "/00_definitions.typ": subfigure
-= Rauscharten
+= Rauscharten<Rauscharten>
   - "Aussehen" der Rauschfunktion durch die spektrale Leistungsdichte bestimmt
   - Dieses folgt dabei einem Potenzgesetz $S(omega) tilde 1/omega^alpha$
   - Klassifikation durch $alpha$
@@ -34,4 +34,4 @@
       [#figure(image("plots/1000/deviation/1d/Timmer-Koenig-1-sum.svg"), caption: [])],
       [#figure(image("plots/1000/Timmer-Koenig-2-noise.svg"), caption: [])<RauschartenBrown>],
       [#figure(image("plots/1000/deviation/1d/Timmer-Koenig-2-sum.svg"), caption: [])],
-    )<Rauscharten>
+    )<AbbRauscharten>
