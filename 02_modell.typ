@@ -109,6 +109,8 @@ Die meisten Rauschsignale sind nich stationär (siehe z.$thin$.B. @AbbIrrweg), w
 $ lim_(t arrow infinity) R(t, tau) eq R(tau) $
 gilt. 
 
+#include "/00_diagrams/Rauscharten.typ"
+
   // - Rauschen kann durch verschiedene Eigenschaften klassifiziert werden, z.B. wie ähnlich ist es zu sich selbst
   // - Autokorrelationsfunktion
   //   - $ &R(t_1,t_2)  colon.eq E{x(t_1)x(t_2)} \
