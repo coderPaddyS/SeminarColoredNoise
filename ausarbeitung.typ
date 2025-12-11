@@ -1,7 +1,7 @@
 #import "ieee-template.typ": ieee
 
 #let appendix = [
-  // #include "appendix.typ"
+  #include "appendix.typ"
 ]
 
 #show: ieee.with(
@@ -26,15 +26,15 @@
 
 #include "01_einleitung.typ"
 #include "02_modell.typ"
-// #include "03_arten.typ"
-// #include "04_algorithmen.typ"
-// #include "05_vergleich.typ"
+#include "03_arten.typ"
+#include "04_algorithmen.typ"
+#include "05_vergleich.typ"
 
-// = Zusammenfasung/Ausblick
-//   - Rauschen als eigentlich Überlagerte harmonische Schwingung wird als stochastischer Prozess, oftmals als Brownsche Bewegung modelliert.
-//   - Anhand der Spektralenleistungsdichte kann Rauschen in verschiedene Kategorien unterteilt werden.
-//   - Weißes, Pinkes und Braunes Rauschen kann auf verschiedene Arten sowohl im Zeit- als auch im Frequenz-Bereich generiert werden
-//   - Dabei ist der Fraktionale-Differenzierung-Algorithmus im Zeit-Bereich am Besten für Echtzeitgenerierung geeignet
-//   - Sowohl der Timmer-Koenig-Algorithmus als auch der Fraktionale-Differenzierung-Algorithmus im Frequenz-Bereich eignen sich für die Generierung von längeren Rauschsignalen.
-//   - Der Algorithmus nach Done @done1992x eignet sich aufgrund des exakten PSD für präzise Analysen
-//   - Dieser ist auch am Einfachsten zu implementieren und zu verstehen
+= Zusammenfasung/Ausblick
+  - Rauschen als eigentlich Überlagerte harmonische Schwingung wird als stochastischer Prozess, oftmals als Brownsche Bewegung modelliert.
+  - Anhand der Spektralenleistungsdichte kann Rauschen in verschiedene Kategorien unterteilt werden.
+  - Weißes, Pinkes und Braunes Rauschen kann auf verschiedene Arten sowohl im Zeit- als auch im Frequenz-Bereich generiert werden
+  - Dabei ist der Fraktionale-Differenzierung-Algorithmus im Zeit-Bereich am Besten für Echtzeitgenerierung geeignet
+  - Sowohl der Timmer-Koenig-Algorithmus als auch der Fraktionale-Differenzierung-Algorithmus im Frequenz-Bereich eignen sich für die Generierung von längeren Rauschsignalen.
+  - Der Algorithmus nach Done @done1992x eignet sich aufgrund des exakten PSD für präzise Analysen
+  - Dieser ist auch am Einfachsten zu implementieren und zu verstehen

@@ -1,5 +1,7 @@
-#import "/00_definitions.typ": subfigure
+#import "/00_definitions.typ": *
+
 = Rauscharten<Rauscharten>
+Das PSD bestimmt die Form Rauschsignals
   - "Aussehen" der Rauschfunktion durch die spektrale Leistungsdichte bestimmt
   - Dieses folgt dabei einem Potenzgesetz $S(omega) tilde 1/omega^alpha$
   - Klassifikation durch $alpha$
@@ -23,15 +25,19 @@
     - Überall gleich starke Leisung
     - Ist die Ableitung von braunem Rauschen #ref(<kasdin1995discrete>, supplement: "S.804")
     - ist gleichmäßig und hat keine erkennbaren Berge oder Täler
-    #subfigure(columns: 2,
+
+#topfull[
+  #let width = 75%;
+    #subfigure(columns: 3,
       caption: [
-        Rauscharten (von oben nach unten): Weißes Rauschen, Pinkes Rauschen, Braunes Rauschen.
-        Links das generierte Rauschsignal, rechts das Integral über das Rauschsignal.
+        Rauscharten (von links nach rechts): Weißes Rauschen, Pinkes Rauschen, Braunes Rauschen.
+        Oben das generierte Rauschsignal, unten das Integral über das Rauschsignal, also die summierte Abweichung über die Zeit.
       ],
-      figure(image("plots/1000/Timmer-Koenig-0-noise.svg"), caption: []),<RauschartenWhite>,
-      [#figure(image("plots/1000/deviation/1d/Timmer-Koenig-0-sum.svg"), caption: [])],
-      [#figure(image("plots/1000/Timmer-Koenig-1-noise.svg"), caption: [])<RauschartenPink>],
-      [#figure(image("plots/1000/deviation/1d/Timmer-Koenig-1-sum.svg"), caption: [])],
-      [#figure(image("plots/1000/Timmer-Koenig-2-noise.svg"), caption: [])<RauschartenBrown>],
-      [#figure(image("plots/1000/deviation/1d/Timmer-Koenig-2-sum.svg"), caption: [])],
+      figure(image("plots/1000/timeseries_done-0-noise.svg", width: width), caption: []),<RauschartenWhite>,
+      [#figure(image("plots/1000/timeseries_done-1-noise.svg", width: width), caption: [])<RauschartenPink>],
+      [#figure(image("plots/1000/timeseries_done-2-noise.svg", width: width), caption: [])<RauschartenBrown>],
+      [#figure(image("plots/1000/deviation/1d/timeseries_done-0-sum.svg", width: width), caption: [])],
+      [#figure(image("plots/1000/deviation/1d/timeseries_done-1-sum.svg", width: width), caption: [])],
+      [#figure(image("plots/1000/deviation/1d/timeseries_done-2-sum.svg", width: width), caption: [])],
     )<AbbRauscharten>
+]

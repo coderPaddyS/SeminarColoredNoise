@@ -123,7 +123,7 @@ gilt.
 
 Eine Anwendung der Fourier-Transformation auf die Autokorrelationsfunktion eines asymptotisch stationären Prozesses ergibt die Spektrale Leistungsdichte (im folgenden PSD#footnote[engl. Power-Spectral-Density]):
 $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)e^(-j omega tau) dif tau $<EqSPD>
-Diese gibt die vorhandene Energie pro Frequenz $omega$ wieder. Eine andere Betrachtung ist wie groß der Anteil einer Frequenz am entgültigen Signal ist und spiegelt damit (im Groben) den Verlauf und die Form wieder. Anhand der Form des PSD werden Rauschsignale klassifiziert, genaueres dazu in III. // TODO: @Rauscharten.
+Diese gibt die vorhandene Energie pro Frequenz $omega$ wieder. Eine andere Betrachtung ist wie groß der Anteil einer Frequenz am entgültigen Signal ist und spiegelt damit (im Groben) den Verlauf und die Form wieder. Anhand der Form des PSD werden Rauschsignale klassifiziert, genaueres dazu in @Rauscharten.
 
 Für die Konvergenz des Integrals in @EqSPD ist die absolute Konvergenz der Autokorrelationsfunktion im Allgemeinen notwendig:
 $ integral_(-infinity)^(infinity) |R(tau) dif tau| < infinity $

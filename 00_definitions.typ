@@ -3,6 +3,20 @@
 #let default-figure = figure
 #let subfigure = subpar.grid.with(
   numbering-sub: "a)",
+  show-sub-caption: (num, it) => {
+    v(-1em)
+    align(left)[
+      #num
+      #if (it.body != []) {
+        [: ]
+        it.body
+      }
+    ]
+  },
+  grid-styles: it => {
+    set std.grid(align: center, column-gutter: 1fr)
+    it
+  },
   // supplement: "asdfasdf",
 )
 
