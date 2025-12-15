@@ -8,29 +8,43 @@
 = Mathematische Beschreibung
 Rauschen wird als ein zeitabhängiger stochastischer Prozess modelliert. Ein stochastischer Prozess über einem Wahrscheinlichkeitsraum $(Omega, scr(F), P)$, einem Messraum $(Z, scr(Z))$ und einer Indexmenge $cal(T)$ ist eine Familie an Zufallsvariablen $X_t: Omega arrow Z ,omega mapsto X_t (omega)$, also eine implizite Abbildung
 $ X: Omega times cal(T) arrow Z, (omega, t) mapsto X(, omega, t), $
-so dass $X_t$ für alle $t in cal(T)$ $scr(F)"-"scr(Z)$ messbar ist.
+so dass $X_t$ für alle $t in cal(T)$ $scr(F)"-"scr(Z)$ messbar ist (vgl. #box[#ref(<signale>, supplement: "S. 66, Def. 3.16")]).
 Dabei ist $Omega$ eine beliebige Ereignismenge, $scr(F)$ eine $sigma$-Algebra über $Omega$ und $P$ ein Wahrscheinlichkeitsmaß über $Omega$  sowie $scr(Z)$ eine $sigma$-Algebra über $Z$ .
 
+== Stochastische Prozesse
 Ein stochastischer Prozess ist linear, wenn alle $X_t$ lineare Abbildungen sind und stationär (im engeren Sinne), wenn alle $X_t$ translationsinvariant sind, also falls $forall s in cal(T)$ und $(t_1, dots, t_n) subset.eq cal(T)$ mit $(t_1 + s, dots, t_n + s) subset.eq cal(T)$ dann auch $(X_(t_1), dots, X_(t_n)) = (X_(t_1 + s), dots, X_(t_n + s))$ gilt.
 
 Falls $cal(T) subset.eq RR$ überabzählbar, also ein Teilintervall von $RR$ ist, so heißt der stochastischer Prozess zeitstetig, andernfalls zeitdiskret.
 Ist $Z subset.eq RR$ überabzählbar, so heißt der stochastische Prozess wertestetig, andernfalls wertediskret.
 
 Ein klassisches Beispiel eines wertediskreten stochastischer Prozess ist eine endliche Markovkette, gegeben z.$thin$B. durch das Zufallsexperiment des Münzwurfs mit der Zufallsvariable $X_t = $ "Kopf -- Zahl nach $t$ Würfen". Da der Münzwurf unabhängige Wahrscheinlichkeit hat, ist $X_t$ stationär. 
-Der Irrweg#footnote[engl. Random walk] auf reellen Zahlen ist hingegen ein wertestetiger und zeitdiskreter stochastischer Prozess beschrieben durch
+Der Irrweg#footnote[engl. random walk] auf reellen Zahlen ist hingegen ein wertestetiger und zeitdiskreter stochastischer Prozess beschrieben durch
 $ cases(X_0 &= thick 0, X_n &= thick X_(n-1) + thick  omega_n) $<Irrweg> mit $w_n$ unabhängige und identische verteilte Zufallsvariablen über $Z$. 
-#topcol[#figure(image("plots/random_walk.svg"), caption: [
+#topcol[#figure(image(width: 60%, "plots/random_walk.svg"), caption: [
   Normalverteilter, zeitdiskreter Irrweg mit 1000 Schritten
 ])<AbbIrrweg>]
 
 Nicht jeder stochastische Prozess ist gut für die Modellierung eines Rauschsignals. Zumeist wird eine Brownsche Bewegung $B$ verwendet, wobei eine Brownsche Bewegung definiert ist als stochastischer Prozess mit den folgenden Bedingungen:
-#colbreak(weak: true)
+
 1. $B_0 = 0$
 2. Für $0 <= t_0 < t_1 < ... < t_m, m in NN$ ist $B_t_i - B_t_(i-1)$ stochastisch unabhängig und normalverteilt
 3. $B(I), I subset RR$ ist stetig 
+#pagebreak(weak: true)
 
-Solch eine Brownsche Bewegung ist eine Realisierung eines Wiener-Prozesses, der nur die Bedingungen 2) und 3) erfüllt. @Irrweg ist auch ein Modell einer Brownschen Bewegung.
-Ein Verzicht auf die stochastische Unabhängigkeit der Zuwächse in 2) ist der Prozess $B$ eine Fraktionale Brownsche Bewegung. 
+Solch eine Brownsche Bewegung ist eine Realisierung eines Wiener-Prozesses, der nur die Bedingungen 2) und 3) erfüllt. Ein Irrweg wie in @Irrweg ist bereits ein Modell einer Brownschen Bewegung.
+
+Ein lineares System wie in @Irrweg kann durch die zugehörige Laplace-Transformation beschrieben werden (vgl. #box[#ref(<signale>, supplement: "S. 665-672")]). @Irrweg ist z.$thin$B. bestimmt durch:
+
+$ H(z) = 1/(1 - z^(-1)), quad abs(z) > 1 $<IrrwegLaplace>
+
+Auf diese Weise kann eine Realisierung einer fraktionalen Brownsche Bewegung bestimmt werden.
+Dabei ist eine fraktionale Brownsche Bewegung eine Brownsche Bewegung, bei der auf die stochastische Unabhängigkeit der Zuwächse in 2) verzichtet wird. 
+
+Die sogenannte Fraktionale Differenzierung ist eine Realisierung einer fraktionalen Brownschen Bewegung und kann durch eine Laplace-Transformation
+$ H(z) = 1/(1 - z^(-1))^(alpha/2) quad abs(z) > 1, alpha in [0, 2] $
+bestimmt werden.
+Dieses Beispiel für eine Fraktionale Differenzierung ist eine Verallgemeinerung von @Irrweg, denn für #box[$alpha = 2$] ist @IrrwegLaplace gegeben.
+
   // - Brownsche Bewegung
   //   - Stochastischer Prozess mit den Bedingungen
   //     1. $B_0 = 0$
@@ -61,23 +75,24 @@ Ein Verzicht auf die stochastische Unabhängigkeit der Zuwächse in 2) ist der P
   // - Wertestetig, zeitdiskret ist ein Irrweg auf reellen Zahlen
   //   - 
   
+== Rauschen als periodische Überlagerung
 Eine mögliche mathematische Modellierung für Rauschen ist die Überlagerung von beliebig vielen harmonische Schwingungen, also 
 $ f(t) = integral_cal(T) a(x) dot sin(omega(x) t - phi.alt(x)) dif x $
 wobei $a: cal(T) arrow RR, omega: cal(T) arrow RR$ und $ phi.alt(x): cal(T) arrow [0, 2 pi]$ falls das Integral existiert.
-Ist $cal(T)$ höchstens abzählbar, dann ist das Modell in einfacher Form durch
+Sind es höchstens abzählbar viele Schwingungen, dann ist das Modell in einfacher Form durch
 $ f(t) = sum_i a_i dot sin(omega_i t - phi.alt_i) $<Modell>
 gegeben, wobei $a_i subset RR, omega_i subset RR, phi_i subset [0, 2pi]$ für alle $i in NN$ sofern $ sum_i abs(a_i dot sin(omega_i t - phi.alt_i)) < infinity. $
 
 Im Weiteren wird @Modell verwendet, da computergestützt nur endlich viele Terme berücksichtigt werden können. Demnach ist $f$ automatisch eine glatte, periodische Funktion. 
 
 Die Fourier-Transformation ist durch 
-$ cal(F)(f)(omega) colon.eq 1/sqrt(2 pi) integral_(-infinity)^(+infinity) f(t) e^(-i omega t) dif t $ und überträgt eine periodische Funktion von der Zeit-Domäne in die Frequenz-Domäne. Für ein hier modelliertes Rauschen hat $cal(F)(f)$ einen diskreten, höchstens abzählbaren Träger, denn 
-$ cal(F)(sin(omega_0 t))(omega) = sqrt(pi / 4) thin delta(omega - omega_0) - sqrt(pi / 4) thin delta(omega + omega_0) $  
-wobei $delta$ die (Dirac-)Delta-Funktion ist.
+$ cal(F)(f)(omega) colon.eq 1/sqrt(2 pi) integral_(-infinity)^(+infinity) f(t) e^(-i omega t) dif t $<FT> gegeben (vgl. #box[#ref(<signale>, supplement: "S. 96, (3.192)")]) und überträgt eine periodische Funktion von der Zeit-Domäne in die Frequenz-Domäne. Für ein hier modelliertes Rauschen hat $cal(F)(f)$ einen diskreten, höchstens abzählbaren Träger, denn 
+$ cal(F)(sin(omega_0 t))(omega) = sqrt(pi / 4) thin delta(omega - omega_0) - sqrt(pi / 4) thin delta(omega + omega_0) $<FTZählbareHarmonischeSchwingung>  
+wobei $delta$ die (Dirac-)Delta-Funktion ist (vgl. #box[#ref(<signale>, supplement: "S. 110, (3.275")]).
 
 Die Inverse-Fourier-Transformation ist durch 
-$ f(t) = 1/sqrt(2 pi) integral_(-infinity)^(+infinity) cal(F)(f)(omega)e^(i omega t) dif t $
-bestimmt und überträgt eine Funktion von der Frequenz-Domäne in die Zeit-Domäne.
+$ f(t) = 1/sqrt(2 pi) integral_(-infinity)^(+infinity) cal(F)(f)(omega)e^(i omega t) dif t $<IFT>
+bestimmt (vgl. #ref(<signale>, supplement: "S. 96, (3.193)")) und überträgt eine Funktion von der Frequenz-Domäne in die Zeit-Domäne.
 
   // - Rauschen ist im Allgemeinen eine Überlagerung von beliebig vielen harmonischen Schwingungen
   //   - $ f(t) = sum_i a_i dot sin(omega_i t - phi.alt_i) $
@@ -96,20 +111,18 @@ bestimmt und überträgt eine Funktion von der Frequenz-Domäne in die Zeit-Dom�
 Die Korrelation zwischen zwei stochastischen Prozessen quantifiziert wie ähnlich diese Prozesse sind.
 Manche Rauschsignale weisen eine hohe Selbsähnlichkeit auf und ähneln translationsinvarianten Prozessen.
 Diese Selbsähnlichkeit wird durch die Autokorrelationsfunktion 
-$ R_X (t_1,t_2)  &colon.eq E{X_(t_1)X_(t_2)} \
+$ R_X (t_1,t_2)  &colon.eq "E"{X_(t_1)X_(t_2)} \
                     &thick = integral_(-infinity)^(infinity) integral_(-infinity)^(infinity) x_1 x_2 f_(X X)(t_1, t_2) dif x_1 dif x_2 $
-zu Zeitpunkten $t_1, t_2$ beschrieben, wobei $f_(X X)$ die Produktdichte zur bivariaten Verteilung über die Zufallsvariable $(X, X)$ ist.
+zu Zeitpunkten $t_1, t_2$ beschrieben (vgl. #box[#ref(<signale>, supplement: "S. 72, (3.70)")]), wobei $f_(X X)$ die Produktdichte#footnote[engl. joint density] zur bivariaten Verteilung über die Zufallsvariable $(X_t_1, X_t_2)$ ist (vgl. #box[#ref(<signale>, supplement: "S. 69, (3.63)")]).
 Für die Analyse von Rauschsignalen ist eine symmetrische Betrachtung der Autokorrelationsfunktion durch
 $ R_X (t, tau) := R_X (t - tau / 2, t + tau / 2) $
 geeigneter, wobei $tau$ die Breite des Zeitfensters für die Autokorrelation ist.
 Ist $X$ ein stationärer Prozess, so ist
 $ R_X (tau) := R_X (t, tau) $
 mit beliebigem $t in cal(T)$ aufgrund der zeitlichen Translationsinvarianz wohldefiniert.
-Die meisten Rauschsignale sind nich stationär (siehe z.$thin$.B. @AbbIrrweg), weshalb stattdessen asymptotisch stationäre Prozesse betrachtet werden, für die 
+Die meisten Rauschsignale sind nicht stationär (siehe z.$thin$B. @AbbIrrweg), weshalb stattdessen asymptotisch stationäre Prozesse betrachtet werden, für die 
 $ lim_(t arrow infinity) R(t, tau) eq R(tau) $
 gilt. 
-
-#include "/00_diagrams/Rauscharten.typ"
 
   // - Rauschen kann durch verschiedene Eigenschaften klassifiziert werden, z.B. wie ähnlich ist es zu sich selbst
   // - Autokorrelationsfunktion
@@ -123,17 +136,54 @@ gilt.
   //   - Nicht jeder stochastische Prozess ist stationär, deswegen
   //   - Asymptotisch stationärer Prozess wenn $ lim_(t arrow infinity) R(t, tau) eq R(tau) $
 
-Eine Anwendung der Fourier-Transformation auf die Autokorrelationsfunktion eines asymptotisch stationären Prozesses ergibt die Spektrale Leistungsdichte (im folgenden PSD#footnote[engl. Power-Spectral-Density]):
-$ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)e^(-j omega tau) dif tau $<EqSPD>
-Diese gibt die vorhandene Energie pro Frequenz $omega$ wieder. Eine andere Betrachtung ist wie groß der Anteil einer Frequenz am entgültigen Signal ist und spiegelt damit (im Groben) den Verlauf und die Form wieder. Anhand der Form des PSD werden Rauschsignale klassifiziert, genaueres dazu in @Rauscharten.
+Eine Anwendung der Fourier-Transformation auf die Autokorrelationsfunktion eines asymptotisch stationären Prozesses $X$ ergibt die Spektrale Leistungsdichte (im folgenden PSD#footnote[engl. power spectral density]):
+$ S(omega) := abs(cal(F)(X)(omega))^2 $
 
-Für die Konvergenz des Integrals in @EqSPD ist die absolute Konvergenz der Autokorrelationsfunktion im Allgemeinen notwendig:
+Allerdings sind Rauschsignale oftmals nicht stationär. So ist @Irrweg als Brownsche Bewegung nicht stationär, da dieser nicht Zeitinvariant ist, denn ist 
+$ X = sum_(i=0)^k omega_i $
+ein zeitdiskreter Irrweg, dann ist für $l in [1,k]$ mit
+$ Y_j colon.eq omega_(i + l), quad  forall j in [l, k - l] $ 
+und $Y_0 = 0$ auch 
+$ Y colon.eq sum_(i=0)^(k-l) Y_i $
+eine Brownsche Bewegung und ein Irrweg, aber es gilt 
+$ Y = X - sum_(i=1)^l omega_(i). $
+Damit ist $X$ nicht translationsinvariant.
+#colbreak(weak: true)
+
+Das Wiener-Chintschin-Theorem verbindet das PSD mit der Autokorrelationsfunktion durch
+$ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)e^(-j omega tau) dif tau $<EqSPD>
+für stationäre Prozesse. 
+Existiert nun die Autokorrelationsfunktion und die Fouriertransformierte dieser, so wird die rechte Seite von @EqSPD als PSD bezeichnet (vgl. #box[#ref(<signale>, supplement: "S. 106, (3.255)")]) und im Weiteren werden nur Rauschsignale betrachtet, bei denen die Fouriertransformatierte der Autokorrelationsfunktion existiert.
+
+Die Spektraleleistungsdichte ermöglicht ein Rauschsignal anders zu betrachten.
+Diese gibt die vorhandene Energie pro Frequenz $omega$ wieder. Eine andere Interpretation ist wie groß der Anteil einer Frequenz am entgültigen Signal ist und spiegelt damit (im Groben) den Verlauf und die Form wieder. Transformationen des PSDs können das ursprüngliche Signal enorm verändern siehe @VariationPSD.
+
+#topcol[
+  #subfigure(
+    columns: 2,
+    caption: [
+      Auswirkungen des PSDs auf ein Signal im Zeitbereich.
+      In @VariationPSDOr ein Rauschsignal mit zugehörigem PSD in @VariationPSDOrPSD.
+      In @VariationPSDTr das Rücktransformierte Signal des PSDs in @VariationPSDTr nach Anwendung des Operators $T(omega) = e^sqrt(omega)$, welcher die höheren Frequenzen exponentiell verstärkt.
+    ],
+    figure(caption: [Originales Signal $x$], image("plots/PSD-Variation-Original.svg")), <VariationPSDOr>,
+    figure(caption: [$S(x)$], image("plots/PSD-Variation-Original-psd.svg")), <VariationPSDOrPSD>,
+    figure(caption: [Transformiertes Signal], image("plots/PSD-Variation-Transformed.svg")), <VariationPSDTr>,
+    figure(caption: [$(T circle.small S(x))$], image("plots/PSD-Variation-Transformed-psd.svg")), <VariationPSDTrPSD>,
+    label: <VariationPSD>
+  )
+]
+#include "/00_diagrams/Rauscharten.typ"
+
+Anhand der Form des PSD werden Rauschsignale klassifiziert, genaueres dazu in @Rauscharten.
+#pagebreak(weak: true)
+
+Für die Konvergenz des Integrals in @EqSPD ist die absolute Konvergenz der Autokorrelationsfunktion
 $ integral_(-infinity)^(infinity) |R(tau) dif tau| < infinity $
+hinreichend, aber im Allgemeinen nicht notwendig.
 Die Berechnung des PSDs in @EqSPD für rein reelle Signale kann aufgrund der Euler-Formel
-$ 1/abs(z) z = e^(i arg(z)) = cos(arg(z)) + i sin(arg(z)) #block[#footnote[
-  Als Argument einer komplexen Zahl ($arg(z)$) wird hier der einschließende Winkel zwischen der reellen Achse und dem Strahl vom Ursprung zu $z$ bezeichnet. 
-]], $
-die für alle $z in CC$ gilt , vereinfacht werden:
+$ 1/abs(z) z = e^(i arg(z)) = cos(arg(z)) + i sin(arg(z)), $
+die für alle $z in CC$ gilt, wobei $arg(z)$ das Argument einer komplexen Zahl -- also der einschließende Winkel zwischen der reellen Achse und dem Strahl vom Ursprung zu $z$ -- bezeichnet, vereinfacht werden:
 $ S(omega) = 2 integral_0^infinity R(tau) cos(omega tau) d tau $<FTReelEinfach>
 
 
@@ -149,13 +199,13 @@ $ S(omega) = 2 integral_0^infinity R(tau) cos(omega tau) d tau $<FTReelEinfach>
 
 Um Rauschsignale digital zu simulieren, müssen stochastische Prozesse sowohl im Zeit- als auch Wertebereich diskretisiert werden.
 
-Eine Wertediskretierung von @Irrweg kann dann rekursiv durch
+Eine Zeitdiskretisierung von @Irrweg kann dann rekursiv durch
 $ X_(k+1) &= sum_(n=0)^k integral_(t_n)^(t_(n+1)) omega(tau) dif tau \
           &= sum_(n=0)^(k-1) omega_n + integral_(t_k)^(t_(k+1)) omega(tau) dif tau
           &= X_k + omega_k $
 berechnet werden. Das PSD ist dann gegeben durch
 $ S(omega) = Q/(2 sin(omega (Delta t)/2))^2 tilde.eq Q/(omega^2) $
-wobei $Q$ die Varianz des $omega_k$-Prozesses beschreibt und $delta t$ die gewählte zeitliche Auflösung zwischen zwei Simulationsschritten ist.
+wobei $Q$ die Varianz des $omega_k$-Prozesses beschreibt und $Delta t$ die gewählte zeitliche Auflösung zwischen zwei Simulationsschritten ist.
 
 
   // - Computer können nur zeitdiskret und wertediskret simulieren. Eine Diskretisierung von @Irrweg kann als Differenzgleichung geschrieben werden:

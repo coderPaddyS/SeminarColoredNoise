@@ -25,7 +25,7 @@ def fractional_differentiation_time_noise(
 
 #figure(
   supplement: "Programm",
-  ```python
+```python
 def fractional_differentiation_frequency_noise(
         beta: float,
         size: int,
