@@ -6,10 +6,18 @@
 // This is the counter used by polylux for the hidden slides
 #let logical-slide-counter = counter("logical-slide")
 #let section-slide-counter = state("section-slide-counter", ())
+#let backup-state = state("backup-section", none)
 
 #let slide-circle-size = 3pt
 
+#let backup() = context {
+  backup-state.update(logical-slide-counter.get().at(0))
+}
+
 #let new-section(name) = context {
+  if backup-state.get() != none {
+    return
+  }
   let new = (slide: logical-slide-counter.get().at(0), section: name, end: -1)
   if section-slide-counter.get().len() != 0 {
     let last = section-slide-counter.get().last()
@@ -31,15 +39,15 @@
   block(
     inset: 1pt,
     radius: (
-      top-right: 0.5cm,
-      bottom-left: 0.5cm
+      top-right: 0.6cm,
+      bottom-left: 0.6cm
     ),
     fill: color,
     block(
     clip: true,
       radius: (
-        top-right: 0.5cm,
-        bottom-left: 0.5cm
+        top-right: 0.6cm,
+        bottom-left: 0.6cm
       ),
       fill: white,
       body
@@ -50,6 +58,11 @@
 
 #let normal-slide = body => slide[
   #align(horizon + start, body)
+]
+
+#let start-section-slide(name, body) = normal-slide[
+  #only(1, new-section(name))
+  #body
 ]
 
 
@@ -63,6 +76,8 @@
   date: datetime.today(),
   body
 ) = {
+
+  set text(font: "Liberation Sans")
 
   set page(
     paper: "presentation-16-9", 
@@ -86,7 +101,11 @@
           let section-ends = section-slide-counter.final()
               .map(x => x.end)
               .slice(0, -1)
-          section-ends.push(logical-slide-counter.final().last())
+          if backup-state.final() == none {
+            section-ends.push(logical-slide-counter.final().last())
+          } else {
+            section-ends.push(backup-state.final())
+          }
           let current = logical-slide-counter.get().first()
           let indicators = section-slide-counter.final()  
             .map(x => x.slide)
@@ -166,18 +185,18 @@
           #set align(bottom)
 
           #text(size: 24pt)[*#title*] 
-          
 
           *#author.at(0) #author.at(1)* | #custom-date-format(date, pattern: "d. MMMM yyyy", lang: "de") \
           Betreuer: #supervisor
+          #v(-1em)
         ],
         [
           #set align(right)
 
           #image("logos/ISAS_logo.png")
-          // #v(1.25em)
+          #v(1.25em)
           #image("logos/IES_logo.png")
-          // #v(1.25em)
+          #v(1.25em)
           #image("logos/IOSB_logo.png")
         ]
       )
