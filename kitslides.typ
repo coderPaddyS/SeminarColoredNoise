@@ -1,3 +1,4 @@
+#import "@preview/polylux:0.4.0": slide as polylux-slide
 #import "@preview/polylux:0.4.0": *
 #import "@preview/datify:1.0.0": custom-date-format
 
@@ -26,7 +27,31 @@
 #let orange = rgb(223, 155, 27)
 #let red = rgb(162, 34, 35)
 
+#let navigation-active-color = black
+#let navigation-inactive-color = rgb(0,0,0).lighten(50%)
+
+#let kit-rounded-block(radius: 3mm, body) = {
+  block(
+    radius: (
+      top-right: radius,
+      bottom-left: radius,
+    ),
+    clip: true,
+    body,
+  )
+}
+
+#let kit-bullet-point = {
+  v(0.5mm)
+  kit-rounded-block(radius: 1mm)[
+    #align(horizon)[
+      #block(fill: kit-green, inset: 1.5mm)
+    ]
+  ]
+}
+
 #let backup() = context {
+  pagebreak(weak: true)
   backup-state.update(logical-slide-counter.get().at(0))
 }
 
@@ -72,14 +97,23 @@
 }
 
 
-#let normal-slide = body => slide[
-  #align(horizon + start, body)
-]
+#let slide(body, alignment: horizon + start) = polylux-slide[
+  #if alignment == top or alignment == top + center or alignment == top + left or alignment == top + right or alignment == top + start or alignment == top + end {
+    v(1cm)
+  }
+    #context metadata((slide: logical-slide-counter.get().first()))
+    #align(alignment)[
+      #set text(16pt)
+      #body
+    ]
+  ]
 
-#let start-section-slide(name, body) = normal-slide[
-  #only(1, new-section(name))
-  #body
-]
+#let start-section-slide(body, name: none, ..args ) = {
+  slide([
+    #only(1, new-section(name))
+    #body
+  ], ..args)
+}
 
 
 #let KITSlides(
@@ -94,6 +128,7 @@
 ) = {
 
   set text(font: "Arial")
+  set figure(supplement: "Abb.")
 
   set page(
     paper: "presentation-16-9", 
@@ -104,6 +139,7 @@
           #text(size: 24pt, [*#h*])
         ]
       ])
+      #v(1em)
     ],
     footer: context [
 
@@ -123,35 +159,34 @@
             section-ends.push(backup-state.final())
           }
           let current = logical-slide-counter.get().first()
-          let indicators = section-slide-counter.final()  
-            .map(x => x.slide)
-            .zip(section-ends)
-          let a = query(metadata)
+
           let indicators = section-slide-counter.final()
             .map(x => x.slide)
             .zip(section-ends)
             .map(((start, end)) => {
+              let color = if start <= current and current <= end and backup-state.get() == none { navigation-active-color } else { navigation-inactive-color }
               range(start, end + 1).map(i => {
                 let target = query(metadata.where(value: (slide: i)))
                 let loc = if target.len() > 0 { target.first().location() } else { none }
-                let fill = if i == current { black } else { none }
+                let fill = if i == current { color } else { none }
 
                 if loc != none {
-                    box[#link(loc)[#circle(radius: slide-circle-size, fill: fill)]]
+                    box[#link(loc)[#circle(radius: slide-circle-size, fill: fill, stroke: color)]]
                   } else {
                     box[some error]
                   }
               }).join([ ])
               }
             )
-            .map(x => (x, []))
-            .flatten()
+            .intersperse([])
 
           let section-titles = sections
             .map((x) => {
+              let color = if section-slide-counter.get().len() != 0 and section-slide-counter.get().last().section == x and backup-state.get() == none { navigation-active-color } else { navigation-inactive-color }
               let target = query(metadata.where(value: (section: x)))
-              (link(target.first().location())[#x], [])
-            }).flatten()
+              link(target.first().location())[#text(color, x)]
+            })
+            .intersperse([])
           let columns = range(section-titles.len()).map(i => if calc.rem(i, 2) == 0 {auto} else {1fr})
 
           place(left + bottom, dy: -0.5cm)[
@@ -164,9 +199,9 @@
           ]
           line(length: 104%, start: (-2%, 0%), stroke: rgb("#d9d9d9"))
 
+          let last-slide = if backup-state.final() != none { backup-state.final() } else { toolbox.last-slide-number }
           place(left + bottom, dx: -0.5cm, dy: -0.35cm, float: true)[
-            #metadata((slide: logical-slide-counter.get().first()))
-            *#toolbox.slide-number / #toolbox.last-slide-number*
+            *#toolbox.slide-number / #last-slide*
             #h(1cm) 
             #custom-date-format(date, pattern: "d. MM. yyyy")
             #h(1cm) 
@@ -191,7 +226,7 @@
   )
   show heading.where(level: 1): none
 
-  slide[
+  polylux-slide[
     #block(width: 100%)[
       #grid(
         columns: (0.5cm, 4fr, 1fr),
@@ -228,26 +263,25 @@
   set page(
     margin: (left: 1cm, right: 1cm, bottom: 1.5cm, top: 3cm),
   )
-  normal-slide[
+
+  set list(marker: kit-bullet-point)
+  slide[
     = Inhaltsverzeichnis
 
     #toolbox.all-sections((sections, current) => {
-      enum(..sections)
+      let entries = sections.enumerate()
+        .map(((index,section)) => [#{index + 1}. #section])
+        .map(x => (x, []))
+        .flatten()
+      let columns = entries.map((_) => 0.5fr)
+
+      set text(fill: kit-blue, weight: "bold")
+
+      grid(columns: 1, rows: (1fr, ..columns, 1fr), [], ..entries)
     })
   ]
 
   body
-}
-
-#let kit-rounded-block(radius: 3mm, body) = {
-  block(
-    radius: (
-      top-right: radius,
-      bottom-left: radius,
-    ),
-    clip: true,
-    body,
-  )
 }
 
 #let kit-color-block(title: [], color: [], body) = {
@@ -291,4 +325,14 @@
 
 #let kit-alert-block(title: [], body) = {
   kit-color-block(title: title, color: red.lighten(10%), body)
+}
+
+#let definition(name: [], body) = kit-info-block(title: name, body)
+
+#let reveal-item = body => {
+  let items = body.children.filter(x => x != [ ])
+
+  for (index, item) in items.enumerate() {
+    only(str(index + 1) + "-", [#item])
+  }
 }
