@@ -35,6 +35,7 @@
 #start-section-slide("Grundlagen")[
 = Motivierendes Beispiel
 Test
+#kit-info-block(title: "asdf")[asdf]
 ]
 
 

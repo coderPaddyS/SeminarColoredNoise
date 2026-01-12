@@ -1,14 +1,30 @@
 #import "@preview/polylux:0.4.0": *
 #import "@preview/datify:1.0.0": custom-date-format
 
-#let KITGreen = rgb(0,150,130)
-
 // This is the counter used by polylux for the hidden slides
 #let logical-slide-counter = counter("logical-slide")
 #let section-slide-counter = state("section-slide-counter", ())
 #let backup-state = state("backup-section", none)
 
 #let slide-circle-size = 3pt
+
+#let _kit-outer-margin = 3mm
+#let _kit-inner-margin = 11mm
+#let _kit-top-margin = 10mm
+#let _kit-bottom-margin = 11mm
+
+#let kit-green = rgb(0, 150, 130)
+#let kit-blue = rgb(70, 100, 170)
+#let green = kit-green
+#let blue = kit-blue
+#let black70 = rgb(64, 64, 64)
+#let brown = rgb(167, 130, 46)
+#let purple = rgb(163, 16, 124)
+#let cyan = rgb(35, 161, 224)
+#let lime = rgb(140, 182, 60)
+#let yellow = rgb(252, 229, 0)
+#let orange = rgb(223, 155, 27)
+#let red = rgb(162, 34, 35)
 
 #let backup() = context {
   backup-state.update(logical-slide-counter.get().at(0))
@@ -77,7 +93,7 @@
   body
 ) = {
 
-  set text(font: "Liberation Sans")
+  set text(font: "Arial")
 
   set page(
     paper: "presentation-16-9", 
@@ -221,4 +237,58 @@
   ]
 
   body
+}
+
+#let kit-rounded-block(radius: 3mm, body) = {
+  block(
+    radius: (
+      top-right: radius,
+      bottom-left: radius,
+    ),
+    clip: true,
+    body,
+  )
+}
+
+#let kit-color-block(title: [], color: [], body) = {
+  // 80% is a rough heuristic, that produces the correct result for all predefined colors.
+  // Might be adjusted in the future
+  let title-color = if luma(color).components().at(0) >= 80% {
+    black
+  } else {
+    white
+  }
+  kit-rounded-block()[
+    #block(
+      width: 100%,
+      inset: (x: 0.5em, top: 0.3em, bottom: 0.4em),
+      fill: gradient.linear(
+        (color, 0%),
+        (color, 87%),
+        (color.lighten(85%), 100%),
+        dir: ttb,
+      ),
+      text(fill: title-color, title),
+    )
+    #set text(size: 15pt)
+    #block(
+      inset: 0.5em,
+      above: 0pt,
+      fill: color.lighten(85%),
+      width: 100%,
+      body,
+    )
+  ]
+}
+
+#let kit-info-block(title: [], body) = {
+  kit-color-block(title: title, color: kit-green, body)
+}
+
+#let kit-example-block(title: [], body) = {
+  kit-color-block(title: title, color: kit-blue, body)
+}
+
+#let kit-alert-block(title: [], body) = {
+  kit-color-block(title: title, color: red.lighten(10%), body)
 }
