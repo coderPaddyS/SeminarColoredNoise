@@ -127,7 +127,7 @@
   body
 ) = {
 
-  set text(font: "Arial")
+  set text(font: "Arial", lang: "de")
   set figure(supplement: "Abb.")
 
   set page(
@@ -189,29 +189,34 @@
             .intersperse([])
           let columns = range(section-titles.len()).map(i => if calc.rem(i, 2) == 0 {auto} else {1fr})
 
-          place(left + bottom, dy: -0.5cm)[
-              #grid(
-                columns: columns,
-                row-gutter: 0.5em, 
-                ..section-titles, 
-                ..indicators
-              )
-          ]
-          line(length: 104%, start: (-2%, 0%), stroke: rgb("#d9d9d9"))
-
           let last-slide = if backup-state.final() != none { backup-state.final() } else { toolbox.last-slide-number }
-          place(left + bottom, dx: -0.5cm, dy: -0.35cm, float: true)[
-            *#toolbox.slide-number / #last-slide*
-            #h(1cm) 
-            #custom-date-format(date, pattern: "d. MM. yyyy")
-            #h(1cm) 
-            #author.at(0) #author.at(1): #shortTitle
-          ]
 
-          place(right)[
-            #v(20%)
-            #image("logos/kitlogo_de_rgb.pdf", height: 70%)
-          ]
+          
+          block(inset: (left: -5mm, right: -5mm, top: -1.25cm), {
+            set align(horizon)
+            grid(
+              columns: (auto, 1cm, auto, 1cm, auto, 1fr, auto),
+              rows: (1cm, 3mm, 1cm),
+              grid.cell(colspan: 7)[
+                #grid(
+                  columns: columns,
+                  row-gutter: 0.5em, 
+                  ..section-titles, 
+                  ..indicators
+                )
+              ],
+              grid.cell(colspan: 7)[
+              #line(length: 100%, stroke: rgb("#d9d9d9"))
+              ],
+              [*#toolbox.slide-number / #last-slide*],
+              [],
+              [#custom-date-format(date, pattern: "dd.MM.yyyy")],
+              [],
+              [#author.at(0) #author.at(1): #shortTitle],
+              [],
+              [#image("logos/kitlogo_de_rgb.pdf", height: 70%)]
+            )
+          })
         } else {
           place(left + bottom, dy: -0.35cm)[
             KIT – Die Forschungsuniversität in der Helmholtz-Gemeinschaft 

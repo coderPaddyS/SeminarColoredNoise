@@ -38,7 +38,7 @@
 #only(2)[
   #figure(
   caption: [
-    Aktienkurs der Porsche-Aktie vom 12.01.2025 - 12.01.2026. @porscheaktie
+    Aktienkurs der Porsche-Aktie vom 12.01.2025 -- 12.01.2026. @porscheaktie
   ],
   image("images/aktienkurs.png", width: 15cm)
 )
@@ -60,18 +60,16 @@
     - Wahrscheinlichkeitsraum $Omega$
     - Indexmenge $cal(T) subset.eq RR$
     - Zielmenge $Z$
-    - $X: Omega times cal(T) -> Z, (omega, t) mapsto X(omega,t)$
+    - $X colon Omega times cal(T) -> Z, (omega, t) mapsto X(omega,t)$
     #only("3-")[
-    - z.B. $Omega = {0,1}, thick Z = RR$
+    - z.$thin$B. $Omega = {0,1}, thick Z = RR$
       #definition(name: "Irrweg (Random Walk)")[
         $ cases(X_0 &= thick 0, X_n &= thick X_(n-1) + thick  omega_n) $<Irrweg> mit $w_n$ unabhängige und identische verteilte Zufallsvariablen über $Z$. 
       ]
     ]
   ][
     #only(3)[
-      #figure(image(width: 90%, "plots/random_walk.svg"), caption: [
-        Normalverteilter Irrweg mit 1000 Schritten
-      ])
+      #figure(image("plots/random_walk.svg"))
     ]
     #only("4-")[
       === Überlagerung Harmonischer Schwingungen
@@ -139,7 +137,7 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
     
   ]
   #only(6)[
-    - Klassifikation durch PSD. Hier: $norm(S(omega)) prop norm(1/omega^alpha)$
+    - Klassifikation durch PSD. Hier: $S(omega) prop 1/omega^alpha$
   ]
 ]
 
@@ -158,7 +156,7 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
     #subfigure(columns: 3,
       [#figure(image("/plots/1000/Phasenrandomisierung-Done-1-noise.svg", width: width))],
       [#figure(image("/plots/1000/deviation/1d/Phasenrandomisierung-Done-1-sum.svg", width: width))],
-      figure(image(width: width, "/plots/1000/Phasenrandomisierung-Done-1-psd.svg"), caption: [PSD pinkes Rauschen]),
+      figure(image(width: width, "/plots/1000/Phasenrandomisierung-Done-1-psd.svg")),
     )
 ]
 #slide[
@@ -202,7 +200,6 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
     #v(-3cm)
     #let width = 85%;
     #subfigure(columns: 2,
-
       figure(image("/plots/1000/Phasenrandomisierung-Done-0-noise.svg", width: width)),
       figure(image(width: width, "/plots/1000/Phasenrandomisierung-Done-0-psd.svg")),
       figure(image("/plots/1000/Phasenrandomisierung-Done-1-noise.svg", width: width)),
@@ -252,14 +249,14 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
 
     #only("2-")[
       === Frequenz-Bereich:
-      - Finite Impulse Result Filter (FIR-Filter)
-      - $a_k = (alpha / 2 + k - 1) dot a_(k-1)/k$
+      - Finite Impulse Response Filter (FIR-Filter)
+      - $a_k = (1/2 dot alpha + k - 1) dot a_(k-1)/k$
       - Diskretisierung von \ $x(t) = w(t) * F^(-1)(a(omega))(t) = cal(F^(-1))(cal(F)(w) dot a(omega))$
     ]
     #only("3-")[
       === Zeit-Bereich:
-      - Auto-Regressive Filter (AR-Filter)
-      - $a_k = (- alpha / 2 + k - 1) dot a_(k-1)/k$
+      - Infinite Impulse Response Filter (IIR-Filter)
+      - $a_k = (- 1/2 dot alpha + k - 1) dot a_(k-1)/k$
       - $x_k = w_k - sum_i^k a_i x_(k - i)$
     ]
     #only(5)[
@@ -290,7 +287,7 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
     - Obwohl $a_k$ endliche Folge
   - FIR-Filter schlecht für kleines $p$
   - AR- und FIR-Filter berechnen gleiches Rauschen
-  - Timmer-Koenig schnell und einfach
+  // - Timmer-Koenig schnell und einfach
 ]
 
 #slide()[
@@ -341,6 +338,12 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
       figure(image(width: width, "plots/1000/deviation/single-repeated/Phasenrandomisierung-Done-2.svg")),
       figure(image(width: width, "plots/1000/deviation/single-repeated/FracDiffTime-2.svg")),
   )
+]
+
+#slide[
+  = Zusammenfassung und Fazit
+  Intuition für $alpha$
+  Conclusion, wieso, was ist passiert, und wie weiter
 ]
 
 #backup()
