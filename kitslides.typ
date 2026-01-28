@@ -103,7 +103,7 @@
   }
     #context metadata((slide: logical-slide-counter.get().first()))
     #align(alignment)[
-      #set text(16pt)
+      #set text(18pt)
       #body
     ]
   ]
@@ -127,8 +127,9 @@
   body
 ) = {
 
-  set text(font: "Arial", lang: "de")
-  set figure(supplement: "Abb.")
+  set text(font: "Arial", lang: "de", size: 16pt)
+
+  set figure(supplement: none)
 
   set page(
     paper: "presentation-16-9", 
@@ -202,7 +203,7 @@
                   columns: columns,
                   row-gutter: 0.5em, 
                   ..section-titles, 
-                  ..indicators
+                  // ..indicators
                 )
               ],
               grid.cell(colspan: 7)[
@@ -230,7 +231,6 @@
     ]
   )
   show heading.where(level: 1): none
-
   polylux-slide[
     #block(width: 100%)[
       #grid(
@@ -239,26 +239,24 @@
         [
           #image("logos/kitlogo_de_rgb.pdf", width: 5cm)
           #set align(bottom)
+          #v(-0.6cm)
 
           #text(size: 24pt)[*#title*] 
 
           *#author.at(0) #author.at(1)* | #custom-date-format(date, pattern: "d. MMMM yyyy", lang: "de") \
           Betreuer: #supervisor
-          #v(-1em)
         ],
         [
           #set align(right)
 
           #image("logos/ISAS_logo.png")
-          #v(1.25em)
+          #v(0.7em)
           #image("logos/IES_logo.png")
-          #v(1.25em)
+          #v(0.7em)
           #image("logos/IOSB_logo.png")
         ]
-      )
-      #box(width: 100%)[
-      ]
-    ]
+      )    ]
+    #v(-0.6cm)
     #set align(bottom)
     #kitblock(color: color.gray)[
       #image("logos/banner_2020_kit.jpg", width: 100%)
@@ -271,16 +269,18 @@
 
   set list(marker: kit-bullet-point)
   slide[
+    #show grid.cell: set text(size: 20pt)
     = Inhaltsverzeichnis
 
     #toolbox.all-sections((sections, current) => {
       let entries = sections.enumerate()
+        // .map(((index,section)) => [#text(size: 16pt)[#{index + 1}. #section]])
         .map(((index,section)) => [#{index + 1}. #section])
         .map(x => (x, []))
         .flatten()
       let columns = entries.map((_) => 0.5fr)
 
-      set text(fill: kit-blue, weight: "bold")
+      set text(fill: kit-blue, weight: "bold", size: 16pt)
 
       grid(columns: 1, rows: (1fr, ..columns, 1fr), [], ..entries)
     })
@@ -309,7 +309,6 @@
       ),
       text(fill: title-color, title),
     )
-    #set text(size: 15pt)
     #block(
       inset: 0.5em,
       above: 0pt,
@@ -334,10 +333,10 @@
 
 #let definition(name: [], body) = kit-info-block(title: name, body)
 
-#let reveal-item = body => {
+#let reveal-item(start: 0, body) = {
   let items = body.children.filter(x => x != [ ])
 
   for (index, item) in items.enumerate() {
-    only(str(index + 1) + "-", [#item])
+    only(str(start + index + 1) + "-", [#item])
   }
 }
