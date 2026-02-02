@@ -36,14 +36,16 @@
 #show math.equation: set text(size: 20pt)
 // #set math.text(size: 12pt)
 
-#start-section-slide(name: "Grundlagen")[
+#slide[
   = Motivierendes Beispiel
+  #v(-1cm)
   #only(1)[
       #toolbox.side-by-side[
     #figure(
       caption: [
         //   Reinforcement Learning. \ Quelle: Wikipedia @vonmegajuice_eigenes_werk
         //  Quelle: Wikipedia @Lugiadoom_Wikipedia_Image_7100074
+         Quelle: Wikipedia @vonmegajuice_eigenes_werk
         ],
         image("images/Reinforcement_learning_diagram.svg", width: 12cm),
         // image("images/Highimgnoise.jpg", width: 8cm)
@@ -66,7 +68,24 @@
   // ]
 ]
 
-#slide(alignment: top)[
+#slide[
+  = Ziel dieses Vortrags
+  #v(-3cm)
+  #toolbox.side-by-side[
+    #kit-info-block(title: [Verständnis])[
+      - Was ist Rauschen (mathematisch)?
+      - Eigenschaften?
+      - Klassifizierungen?
+    ]
+  ][
+    #kit-info-block(lighten: 65%, title: [Sample-Generierung])[
+      - Wie generieren?
+      - Wie effizient? \ \
+    ]
+  ]
+]
+
+#start-section-slide(name: "Grundlagen", alignment: top)[
   = Mathematische Modellierung
   === Zeitabhängiger Stochastischer Prozess
   - Wahrscheinlichkeitsraum $Omega$
@@ -171,7 +190,9 @@
 
 #slide(alignment: top)[
   = Analyse von Rauschsignalen
+  #only("1-3")[
   #v(-1cm)
+  ]
   #only((1,2))[
     #toolbox.side-by-side[
       #definition(name: "Fourier-Transformation")[
@@ -186,8 +207,9 @@
         ]
       ]
     ]
-    #toolbox.side-by-side[
-      #image("plots/Überlagerung-10.svg")
+    #v(-0.5cm)
+    #toolbox.side-by-side(columns: (1fr, auto, 1fr))[
+      #image("plots/Überlagerung-10.svg", width: 10.5cm)
     ][
       #align(center + horizon)[
         #show math.equation: set text(size: 32pt)
@@ -199,7 +221,7 @@
         ]
       ]
     ][
-      #image("plots/Überlagerung-fft-10.svg")
+      #image("plots/Überlagerung-fft-10.svg", width: 10.5cm)
     ]
   ]
   #only("3-4")[
@@ -225,7 +247,7 @@
     #v(-1em)
     #toolbox.side-by-side(columns: (1fr, auto, 1fr))[
       #show: align.with(center)
-      #image("plots/rect-signal.svg", width: 9cm)
+      #image("plots/rect-signal.svg", width: 10cm)
     ][
       #align(center + horizon)[
         #show math.equation: set text(size: 32pt)
@@ -234,7 +256,7 @@
       ]
     ][
       #show: align.with(center)
-      #image("plots/rect-acr.svg", width: 9cm)
+      #image("plots/rect-acr.svg", width: 10cm)
     ]
   ]
   #only("4,7")[
@@ -263,7 +285,8 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
     ]
   ]
   #only(7)[
-    - Rausch-Klassifikation durch PSD. Hier: $S(omega) prop 1/omega^alpha$
+    - Rausch-Klassifikation durch PSD: 
+    $ S(omega) prop 1/omega^alpha $
   ]
 ]
 
@@ -272,7 +295,6 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
 #start-section-slide(name: "Rauscharten")[
   = Weißes Rauschen $(alpha = 0)$
     #grid(columns: 3,
-      [],[],[],
       [#figure(image("/plots/1000/deviation/1d/Phasenrandomisierung-Done-0-noise-labelless.svg", width: width))
         #place(top + center, float: false, dy: -0.5em)[
           Signal $x_k$
@@ -335,26 +357,27 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
   )
 ]
 
-#start-section-slide(name: "Verfahren", alignment: top)[
-  = Rauschsimulation
-  - Ziel: Zu gegebenem $alpha$ generiere diskrete Rauschsignale (Samples) mit $S(omega) prop norm(1/omega^alpha)$ 
-  
-  #show: later
-  #definition(name: [Simulation eines stetigen Prozesses])[
-    Ein zeitdiskreter Prozess $tilde(X)_k$ mit Schrittweite $Delta t$ simuliert einen zeitstetigen Prozess $X(t, omega)$ falls: \
-    $ R_tilde(X)(tau) = R_X (tau Delta t) $  
-  ]
-
-  #reveal-item(start: 1)[
-  - Intuitiv: "Diskretisierung ist in jedem Zeitfenster ähnlich zum stetigen Signal"
-  - Generierung im Zeit- oder Frequenzbereich möglich
+#start-section-slide(name: "Verfahren")[
+  = Ziel dieses Vortrags
+  #v(-3cm)
+  #toolbox.side-by-side[
+    #kit-info-block(lighten: 65%, title: [Verständnis])[
+      - Was ist Rauschen (mathematisch)?
+      - Eigenschaften?
+      - Klassifizierungen?
+    ]
+  ][
+    #kit-info-block(title: [Sample-Generierung])[
+      - Wie generieren?
+      - Wie effizient? \ \
+    ]
   ]
 ]
 
 #slide(alignment: top)[
 = Phasenrandomisierung
   #toolbox.side-by-side(columns: (1fr, 1fr))[
-    - Nach Done in @done1992x
+    - Nach Done #only(1)[in @done1992x #footnote([#cite(<done1992x>, form: "full") #v(1cm)])]
     - Generierung im Zeitbereich
     - Beobachtung: Rauschen als Überlagerung harmonischer Schwingungen
     #set list(marker: $arrow.r.double$)
@@ -374,18 +397,18 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
     #only("1-2")[
     #align(center)[
       #v(-3cm)
-      #image("/plots/Überlagerung-phase-det-100.svg", width: 9cm)
+      #image("/plots/Überlagerung-phase-det-100.svg", width: 10cm)
       #show: only.with(2)
       #v(-1cm)
-      #image("/plots/Überlagerung-phase-rand-100.svg", width: 9cm)
+      #image("/plots/Überlagerung-phase-rand-100.svg", width: 10cm)
     ]
     ]
     #show: only.with(3)
     #align(center)[
       #v(-3cm)
-      #image("/plots/1000/Phasenrandomisierung-Done-2-noise.svg", width: 9cm)
+      #image("/plots/1000/Phasenrandomisierung-Done-2-noise.svg", width: 10cm)
       #v(-1cm)
-      #image("/plots/1000/Phasenrandomisierung-Done-2-psd.svg", width: 9cm)
+      #image("/plots/1000/Phasenrandomisierung-Done-2-psd.svg", width: 10cm)
     ]
     // #subfigure(columns: 2,
     //   figure(image("/plots/1000/Phasenrandomisierung-Done-0-noise.svg", width: width)),
@@ -404,7 +427,7 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
   ```)
 = Timmer-Koenig
   #toolbox.side-by-side(columns: (1fr, 1fr))[
-    - Von Timmer und Koenig in @timmer1995generating
+    - Von Timmer und Koenig #only(1)[in @timmer1995generating #footnote([#cite(<timmer1995generating>, form: "full") #v(1cm)])]
     - Generierung im Frequenz-Bereich
     - #v(2mm)$cal(F)(x)(omega) =& quad 1/sqrt(N) sum_t x(t) cos(omega t) \ &+ i 1/sqrt(N) sum_t x(t) sin(omega t) $
     #show: only.with("2-")
@@ -417,9 +440,9 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
     #show: only.with(3)
     #align(center)[
       #v(-3cm)
-      #image("/plots/1000/Timmer-Koenig-2-noise.svg", width: 9cm)
+      #image("/plots/1000/Timmer-Koenig-2-noise.svg", width: 10cm)
       #v(-1cm)
-      #image("/plots/1000/Timmer-Koenig-2-psd.svg", width: 9cm)
+      #image("/plots/1000/Timmer-Koenig-2-psd.svg", width: 10cm)
     ]
     // #let width = 85%;
     // #subfigure(columns: 2,
@@ -436,7 +459,7 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
   #toolbox.side-by-side(columns: (1fr, 1fr))[
     #only("1-2")[
     - Fraktionale = Rekursiv
-    - Von Kasdin in @kasdin1995discrete
+    - Von Kasdin #only(1)[in @kasdin1995discrete #footnote([#cite(<kasdin1995discrete>, form: "full") #v(1cm)])]
     - Sowohl Zeit- als auch Frequenzbereich
     ]
     #only("-2")[
@@ -447,7 +470,7 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
       === Frequenz-Bereich:
       - Finite Impulse Response Filter (FIR-Filter)
       - $a_k = (1/2 dot alpha + k - 1) dot a_(k-1)/k$
-      - Diskretisierung von \ #v(1mm) $x(t) = &w(t) * F^(-1)(a(omega))(t)\ = &cal(F^(-1))(cal(F)(w) dot a(omega))$
+      - Diskretisierung von \ #v(1mm) $x(t) = &w(t) * cal(F)^(-1)(a(omega))(t)\ = &cal(F^(-1))(cal(F)(w) dot a(omega))$
     ]
     #only("3-4")[
       === Zeit-Bereich:
@@ -467,9 +490,9 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
     #only("4-")[
       #align(center)[
         #v(-3cm)
-        #image("/plots/1000/FracDiffTime-2-noise.svg", width: 9cm)
+        #image("/plots/1000/FracDiffTime-2-noise.svg", width: 10cm)
         #v(-1cm)
-        #image("/plots/1000/FracDiffTime-2-psd.svg", width: 9cm)
+        #image("/plots/1000/FracDiffTime-2-psd.svg", width: 10cm)
       ]
       // #subfigure(columns: 2,
       //   figure(image("/plots/1000/FracDiffTime-0-noise.svg", width: width)),
@@ -485,7 +508,9 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
 
 #start-section-slide(name: "Vergleich", alignment: top)[
   = Eigenschaften
+  #only("1-6")[
   #v(-1cm)
+  ]
   #only("1-")[
   - Phasenrandomisierung berechnet periodisches Rauschen
   ]
@@ -507,6 +532,7 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
       #pad(bottom: 6mm)[#x]
     ])
     #set align(center + bottom)
+    2-Dimensionaler Irrweg
     #grid(columns: 3,
       row-gutter: -4mm,
       ..header,
@@ -585,23 +611,42 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
 ]
 
 #slide()[
-  #only(1)[
   = Laufzeit und Speicheraufwand
-    #toolbox.side-by-side(columns: (1fr, auto))[
-  #figure(image("time/10000/combined/all.svg"))
+  #v(-2cm)
+  #toolbox.side-by-side(columns: (auto, auto))[
+    #v(1cm)
+    #figure(image("time/10000/combined/all-legendless.svg", height: 13.5cm))
   ][
-    #table(columns: 2,
-      stroke: none,
-      table.hline(y: 1),
-      table.vline(x: 1),
-      table.header(
-        [*Algorithmus*], [*Speicher*]
-      ),
-      [Done], [$O(n)$],
-      [Timmer-Koenig], [$O(n)$], 
-      [FIR-Filter], [$O(n + p)$], 
-      [IIR-Filter], [$O(p)$],
-    )
+    #only(1)[
+      #table(columns: 2,
+        stroke: none,
+        table.hline(y: 1),
+        table.vline(x: 1),
+        table.header(
+          [*Algorithmus*], [*Speicher*]
+        ),
+        [Done], [$O(n)$],
+        [Timmer-Koenig], [$O(n)$], 
+        [FIR-Filter], [$O(n + p)$], 
+        [IIR-Filter], [$O(p)$],
+      )
+      #v(1.15cm)
+    ]
+    #only(2)[
+      #v(-1cm)
+      #move(dx: 2cm)[
+        #scale(115%)[
+          #block(width: 6cm, height: 6.3cm, clip: true)[
+            #move(dy: 5.4cm, dx: -4cm)[
+              #image(width: 20cm, height: 20cm, "time/10000/combined/all.svg")
+            ]
+          ]
+          #place(bottom + right)[
+            #box(fill: white, width: 1cm, height: 2cm)
+          ]
+        ]
+      ]
+    ]
     #table(columns: 2,
       stroke: none,
       table.hline(y: 1),
@@ -614,7 +659,6 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
       [FIR-Filter], [$O(n log(n) + p)$],
       [IIR-Filter], [$O(n dot p)$]
     )
-  ]
   ]
   // #only(2)[
   // #place(top + center, float: false, scope: "column")[
@@ -632,9 +676,10 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
   #list(marker: $arrow.r.double$)[
     Rauschen $!=$ Rauschen
   ]
-  - Farbiges Rauschen:
-    - PSD $prop 1/(omega^alpha)$ 
+  #kit-info-block(title: "Farbiges Rauschen")[
+    $ "PSD" prop 1/(omega^alpha) $ 
     - $alpha$ groß $arrow.r.double$ Niedrige Frequenzen dominieren
+  ]
   - Verschiedene Möglichkeiten farbige Rauschsamples zu generieren
     - Zeit- und Frequenz-Bereich möglich
   - Samples können für z.$thin$B. Reinforcement Learning genutzt werden 
@@ -657,6 +702,30 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
   = Quellen
   #bibliography("sliderefs.bib", full: true)
 ]
+
+#slide(alignment: top)[
+  = Brownsche Bewegung
+  #only(1)[
+  #definition(name: [Brownsche Bewegung])[
+    Eine Brownsche Bewegung $B$ ist definiert als stochastischer Prozess mit den Bedingungen:
+
+    1. $B_0 = 0$
+    2. Für $0 <= t_0 < t_1 < ... < t_m, m in NN$ ist $B_t_i - B_t_(i-1)$ stochastisch unabhängig und normalverteilt
+    3. $B(I), I subset RR$ ist stetig 
+  ]
+  ]
+  #definition(name: "Fraktionale Brownsche Bewegung")[
+    $B$ ist eine Fraktionale Brownsche Bewegung, falls obige Bedingungen ohne die stochastische Unabhängigkeit in 2. gelten.
+  ]
+  #only(2)[
+    - Irrweg (ist Brownsche Bewegung) durch Laplace-Transformation beschrieben:
+$ H(z) = 1/(1 - z^(-1)), quad abs(z) > 1 $
+    - Verallgemeinerung als Fraktionale Brownsche Bewegung:
+$ H(z) = 1/(1 - z^(-1))^(alpha/2) quad abs(z) > 1, alpha in [0, 2] $
+
+  ]
+]
+
 
 #slide(alignment: top)[
   = Vorteile der Modellierungen
@@ -698,15 +767,45 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
 ]
 
 #slide(alignment: top)[
-  = Simulation eines stetigen Prozesses
+  = Auswirkungen Veränderungen PSD auf Signal
+  #let width = 7cm
+  #show: align.with(center)
+  $ T(omega) = e^sqrt(omega) $
+
+  #only(1)[
+  #grid(
+    columns: 2,
+    figure(caption: [Originales Signal $x$], image("plots/PSD-Variation-Original.svg", width: width)), 
+    figure(caption: [$S(x)$], image("plots/PSD-Variation-Original-psd.svg", width: width)),
+
+  )
+  ]
+  #only(2)[
+      #grid(
+    columns: 2,
+    figure(caption: [Transformiertes Signal], image("plots/PSD-Variation-Transformed.svg", width: width)), 
+    figure(caption: [$(T circle.small S(x))$], image("plots/PSD-Variation-Transformed-psd.svg", width: width)), 
+
+  )
+  ]
+]
+
+#slide(alignment: top)[
+  = Rauschsimulation  
   #definition(name: [Simulation eines stetigen Prozesses])[
     Ein zeitdiskreter Prozess $tilde(X)_k$ mit Schrittweite $Delta t$ simuliert einen zeitstetigen Prozess $X(t, omega)$ falls: \
     $ R_tilde(X)(k, m) = R_X (k Delta t, m Delta t) $  
   ]
+
+  - Intuitiv: "Diskretisierung ist in jedem Zeitfenster ähnlich zum stetigen Signal"
+  - Generierung im Zeit- oder Frequenzbereich möglich
+]
+
+#slide(alignment: top)[
   - Autokorrelationsfunktion und PSD hängen zusammen
   #set list(marker: $arrow.r.double$)
   - Wiener-Chintschin-Theorem:
-  $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)e^(-j omega tau) dif tau $
+  $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)e^(-i omega tau) dif tau $
 ]
 
 #let width = 75%
@@ -759,21 +858,61 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
   #grid(columns: 3,
     row-gutter: -4mm,
     [#pad(bottom: 6mm)[$p=5$]],
-    [#pad(bottom: 6mm)[$p=50$]],
-    [#pad(bottom: 6mm)[$p=100$]],
+    [#pad(bottom: 6mm)[$p=10$]],
+    [#pad(bottom: 6mm)[$p=25$]],
     figure(image(width: width, "plots/FracDiffFreq_cutoff_5-psd.svg")),
-    figure(image(width: width, "plots/FracDiffFreq_cutoff_50-psd.svg")),
-    figure(image(width: width, "plots/FracDiffFreq_cutoff_100-psd.svg")),
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_10-psd.svg")),
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_25-psd.svg")),
   )
   #v(-1cm)
   #grid(columns: 2,
     row-gutter: -4mm,
-    [#pad(bottom: 6mm)[$p=500$]],
-    [#pad(bottom: 6mm)[$p=1000$]],
-    figure(image(width: width, "plots/FracDiffFreq_cutoff_500-psd.svg")),
-    figure(image(width: width, "plots/FracDiffFreq_cutoff_full-psd.svg")),
+    [#pad(bottom: 6mm)[$p=50$]],
+    [#pad(bottom: 6mm)[$p=100$]],
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_50-psd.svg")),
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_100-psd.svg")),
   )
 ]
+
+#slide(alignment: center)[
+  = FIR
+  #let width = 8cm
+  #v(-2cm)
+  #grid(columns: 3,
+    row-gutter: -4mm,
+    [#pad(bottom: 6mm)[$p=5$]],
+    [#pad(bottom: 6mm)[$p=10$]],
+    [#pad(bottom: 6mm)[$p=25$]],
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_5-psd-xlog.svg")),
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_10-psd-xlog.svg")),
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_25-psd-xlog.svg")),
+  )
+  #v(-1cm)
+  #grid(columns: 2,
+    row-gutter: -4mm,
+    [#pad(bottom: 6mm)[$p=50$]],
+    [#pad(bottom: 6mm)[$p=100$]],
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_50-psd-xlog.svg")),
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_100-psd-xlog.svg")),
+  )
+]
+
+// #slide(alignment: center)[
+//   = FIR
+//   #let width = 8cm
+//   #v(-2cm)
+//   #grid(columns: 2,
+//     row-gutter: -4mm,
+//     [#pad(bottom: 6mm)[$abs((p=5) - (p=50))$]],
+//     [#pad(bottom: 6mm)[$p=50$]],
+//     figure(image(width: width, "plots/FracDiffFreq_cutoff_5-50-psd-xlog.svg")),
+//     figure(image(width: width, "plots/FracDiffFreq_cutoff_50-100-psd-xlog.svg")),
+//     [#pad(bottom: 6mm)[$p=100$]],
+//     [#pad(bottom: 6mm)[$p=500$]],
+//     figure(image(width: width, "plots/FracDiffFreq_cutoff_100-500-psd-xlog.svg")),
+//     figure(image(width: width, "plots/FracDiffFreq_cutoff_500-1000-psd-xlog.svg")),
+//   )
+// ]
 
 #slide[
   #v(-3cm)

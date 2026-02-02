@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-01-29T08:02:31.254368</dc:date>
+    <dc:date>2026-02-02T15:56:20.423793</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -30,33 +30,33 @@ z
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 57.6 307.584 
-L 414.72 307.584 
-L 414.72 41.472 
-L 57.6 41.472 
+    <path d="M 100.0775 266.245 
+L 434.88 266.245 
+L 434.88 25.92 
+L 100.0775 25.92 
 z
 " style="fill: #ffffff"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
      <g id="line2d_1">
-      <path d="M 73.832727 307.584 
-L 73.832727 41.472 
-" clip-path="url(#p241843ff5f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 115.295795 266.245 
+L 115.295795 25.92 
+" clip-path="url(#pc6af10bf0f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_2">
       <defs>
-       <path id="mcd34d5ca0a" d="M 0 0 
+       <path id="m81c6b3fde7" d="M 0 0 
 L 0 3.5 
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#mcd34d5ca0a" x="73.832727" y="307.584" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m81c6b3fde7" x="115.295795" y="266.245" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_1">
       <!-- −2 -->
-      <g transform="translate(61.063977 330.97525) scale(0.24 -0.24)">
+      <g transform="translate(102.527045 289.63625) scale(0.24 -0.24)">
        <defs>
         <path id="TeXGyreTermes-Regular-2212" d="M 3354 1389 
 L 3354 1811 
@@ -92,18 +92,18 @@ z
     </g>
     <g id="xtick_2">
      <g id="line2d_3">
-      <path d="M 236.16 307.584 
-L 236.16 41.472 
-" clip-path="url(#p241843ff5f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 267.47875 266.245 
+L 267.47875 25.92 
+" clip-path="url(#pc6af10bf0f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_4">
       <g>
-       <use xlink:href="#mcd34d5ca0a" x="236.16" y="307.584" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m81c6b3fde7" x="267.47875" y="266.245" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_2">
       <!-- 0 -->
-      <g transform="translate(230.16 330.97525) scale(0.24 -0.24)">
+      <g transform="translate(261.47875 289.63625) scale(0.24 -0.24)">
        <defs>
         <path id="TeXGyreTermes-Regular-30" d="M 3046 2112 
 C 3046 3424 2464 4326 1626 4326 
@@ -128,25 +128,25 @@ z
     </g>
     <g id="xtick_3">
      <g id="line2d_5">
-      <path d="M 398.487273 307.584 
-L 398.487273 41.472 
-" clip-path="url(#p241843ff5f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 419.661705 266.245 
+L 419.661705 25.92 
+" clip-path="url(#pc6af10bf0f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_6">
       <g>
-       <use xlink:href="#mcd34d5ca0a" x="398.487273" y="307.584" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m81c6b3fde7" x="419.661705" y="266.245" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_3">
       <!-- 2 -->
-      <g transform="translate(392.487273 330.97525) scale(0.24 -0.24)">
+      <g transform="translate(413.661705 289.63625) scale(0.24 -0.24)">
        <use xlink:href="#TeXGyreTermes-Regular-32"/>
       </g>
      </g>
     </g>
     <g id="text_4">
      <!-- x -->
-     <g transform="translate(230.16 356.57525) scale(0.24 -0.24)">
+     <g transform="translate(261.47875 315.23625) scale(0.24 -0.24)">
       <defs>
        <path id="TeXGyreTermes-Regular-78" d="M 3066 0 
 L 3066 96 
@@ -192,23 +192,23 @@ z
    <g id="matplotlib.axis_2">
     <g id="ytick_1">
      <g id="line2d_7">
-      <path d="M 57.6 295.488 
-L 414.72 295.488 
-" clip-path="url(#p241843ff5f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 100.0775 255.321136 
+L 434.88 255.321136 
+" clip-path="url(#pc6af10bf0f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_8">
       <defs>
-       <path id="mca59330a18" d="M 0 0 
+       <path id="m37e3b3edfe" d="M 0 0 
 L -3.5 0 
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#mca59330a18" x="57.6" y="295.488" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m37e3b3edfe" x="100.0775" y="255.321136" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_5">
       <!-- 0.00 -->
-      <g transform="translate(8.6 303.683625) scale(0.24 -0.24)">
+      <g transform="translate(51.0775 263.516761) scale(0.24 -0.24)">
        <defs>
         <path id="TeXGyreTermes-Regular-2e" d="M 1158 275 
 C 1158 474 992 640 800 640 
@@ -227,18 +227,18 @@ z
     </g>
     <g id="ytick_2">
      <g id="line2d_9">
-      <path d="M 57.6 235.008 
-L 414.72 235.008 
-" clip-path="url(#p241843ff5f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 100.0775 200.701818 
+L 434.88 200.701818 
+" clip-path="url(#pc6af10bf0f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_10">
       <g>
-       <use xlink:href="#mca59330a18" x="57.6" y="235.008" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m37e3b3edfe" x="100.0775" y="200.701818" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_6">
       <!-- 0.25 -->
-      <g transform="translate(8.6 243.203625) scale(0.24 -0.24)">
+      <g transform="translate(51.0775 208.897443) scale(0.24 -0.24)">
        <defs>
         <path id="TeXGyreTermes-Regular-35" d="M 2803 4358 
 L 2746 4403 
@@ -274,18 +274,18 @@ z
     </g>
     <g id="ytick_3">
      <g id="line2d_11">
-      <path d="M 57.6 174.528 
-L 414.72 174.528 
-" clip-path="url(#p241843ff5f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 100.0775 146.0825 
+L 434.88 146.0825 
+" clip-path="url(#pc6af10bf0f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_12">
       <g>
-       <use xlink:href="#mca59330a18" x="57.6" y="174.528" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m37e3b3edfe" x="100.0775" y="146.0825" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_7">
       <!-- 0.50 -->
-      <g transform="translate(8.6 182.723625) scale(0.24 -0.24)">
+      <g transform="translate(51.0775 154.278125) scale(0.24 -0.24)">
        <use xlink:href="#TeXGyreTermes-Regular-30"/>
        <use xlink:href="#TeXGyreTermes-Regular-2e" transform="translate(49.999985 0)"/>
        <use xlink:href="#TeXGyreTermes-Regular-35" transform="translate(74.999969 0)"/>
@@ -295,18 +295,18 @@ L 414.72 174.528
     </g>
     <g id="ytick_4">
      <g id="line2d_13">
-      <path d="M 57.6 114.048 
-L 414.72 114.048 
-" clip-path="url(#p241843ff5f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 100.0775 91.463182 
+L 434.88 91.463182 
+" clip-path="url(#pc6af10bf0f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_14">
       <g>
-       <use xlink:href="#mca59330a18" x="57.6" y="114.048" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m37e3b3edfe" x="100.0775" y="91.463182" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_8">
       <!-- 0.75 -->
-      <g transform="translate(8.6 122.243625) scale(0.24 -0.24)">
+      <g transform="translate(51.0775 99.658807) scale(0.24 -0.24)">
        <defs>
         <path id="TeXGyreTermes-Regular-37" d="M 2874 4134 
 L 2874 4237 
@@ -330,18 +330,18 @@ z
     </g>
     <g id="ytick_5">
      <g id="line2d_15">
-      <path d="M 57.6 53.568 
-L 414.72 53.568 
-" clip-path="url(#p241843ff5f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
+      <path d="M 100.0775 36.843864 
+L 434.88 36.843864 
+" clip-path="url(#pc6af10bf0f)" style="fill: none; stroke: #b0b0b0; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_16">
       <g>
-       <use xlink:href="#mca59330a18" x="57.6" y="53.568" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m37e3b3edfe" x="100.0775" y="36.843864" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_9">
       <!-- 1.00 -->
-      <g transform="translate(8.6 61.763625) scale(0.24 -0.24)">
+      <g transform="translate(51.0775 45.039489) scale(0.24 -0.24)">
        <defs>
         <path id="TeXGyreTermes-Regular-31" d="M 2522 0 
 L 2522 96 
@@ -370,7 +370,7 @@ z
     </g>
     <g id="text_10">
      <!-- y -->
-     <g transform="translate(-0.63125 180.528) rotate(-90) scale(0.24 -0.24)">
+     <g transform="translate(41.84625 152.0825) rotate(-90) scale(0.24 -0.24)">
       <defs>
        <path id="TeXGyreTermes-Regular-79" d="M 3040 2784 
 L 3040 2880 
@@ -405,40 +405,40 @@ z
     </g>
    </g>
    <g id="line2d_17">
-    <path d="M 73.832727 295.488 
-L 154.752629 295.488 
-L 155.077609 53.568 
-L 317.242391 53.568 
-L 317.567371 295.488 
-L 398.487273 295.488 
-L 398.487273 295.488 
-" clip-path="url(#p241843ff5f)" style="fill: none; stroke: #1f77b4; stroke-width: 1.5; stroke-linecap: square"/>
+    <path d="M 115.295795 255.321136 
+L 191.15877 255.321136 
+L 191.46344 36.843864 
+L 343.49406 36.843864 
+L 343.79873 255.321136 
+L 419.661705 255.321136 
+L 419.661705 255.321136 
+" clip-path="url(#pc6af10bf0f)" style="fill: none; stroke: #1f77b4; stroke-width: 2; stroke-linecap: square"/>
    </g>
    <g id="patch_3">
-    <path d="M 57.6 307.584 
-L 57.6 41.472 
+    <path d="M 100.0775 266.245 
+L 100.0775 25.92 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_4">
-    <path d="M 414.72 307.584 
-L 414.72 41.472 
+    <path d="M 434.88 266.245 
+L 434.88 25.92 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_5">
-    <path d="M 57.6 307.584 
-L 414.72 307.584 
+    <path d="M 100.0775 266.245 
+L 434.88 266.245 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_6">
-    <path d="M 57.6 41.472 
-L 414.72 41.472 
+    <path d="M 100.0775 25.92 
+L 434.88 25.92 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p241843ff5f">
-   <rect x="57.6" y="41.472" width="357.12" height="266.112"/>
+  <clipPath id="pc6af10bf0f">
+   <rect x="100.0775" y="25.92" width="334.8025" height="240.325"/>
   </clipPath>
  </defs>
 </svg>

@@ -195,9 +195,10 @@
           
           block(inset: (left: -5mm, right: -5mm, top: -1.25cm), {
             set align(horizon)
+            v(1fr)
             grid(
               columns: (auto, 1cm, auto, 1cm, auto, 1fr, auto),
-              rows: (1cm, 3mm, 1cm),
+              rows: (0.7cm, 2mm, 1cm),
               grid.cell(colspan: 7)[
                 #grid(
                   columns: columns,
@@ -319,8 +320,8 @@
   ]
 }
 
-#let kit-info-block(title: [], body) = {
-  kit-color-block(title: title, color: kit-green, body)
+#let kit-info-block(title: [], lighten: 0%, body) = {
+  kit-color-block(title: title, color: kit-green.lighten(lighten), body)
 }
 
 #let kit-example-block(title: [], body) = {
