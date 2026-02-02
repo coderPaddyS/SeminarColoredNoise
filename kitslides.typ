@@ -99,9 +99,9 @@
 
 #let slide(body, alignment: horizon + start) = polylux-slide[
   #if alignment == top or alignment == top + center or alignment == top + left or alignment == top + right or alignment == top + start or alignment == top + end {
-    v(1cm)
+    // v(1cm)
   }
-    #context metadata((slide: logical-slide-counter.get().first()))
+  #context metadata((slide: logical-slide-counter.get().first()))
     #align(alignment)[
       #set text(18pt)
       #body
@@ -136,8 +136,8 @@
     margin: (left: 0.5cm, right: 0.5cm, bottom: 1.5cm, top: 1cm),
     header: context [
       #toolbox.next-heading(h => [
-        #place(top + left, dy: 2cm)[
-          #text(size: 24pt, [*#h*])
+        #place(top + left, dy: 1cm)[
+          #text(size: 28pt, [*#h*])
         ]
       ])
       #v(1em)

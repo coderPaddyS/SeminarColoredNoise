@@ -42,9 +42,11 @@
       #toolbox.side-by-side[
     #figure(
       caption: [
-         Quelle: Wikipedia @Lugiadoom_Wikipedia_Image_7100074
+        //   Reinforcement Learning. \ Quelle: Wikipedia @vonmegajuice_eigenes_werk
+        //  Quelle: Wikipedia @Lugiadoom_Wikipedia_Image_7100074
         ],
-        image("images/Highimgnoise.jpg", width: 8cm)
+        image("images/Reinforcement_learning_diagram.svg", width: 12cm),
+        // image("images/Highimgnoise.jpg", width: 8cm)
       )
   ][
       #figure(
@@ -55,14 +57,13 @@
       )
   ]
   ]
-  #only(2)[
-  #figure(
-    caption: [
-      Reinforcement Learning. \ Quelle: Wikipedia @vonmegajuice_eigenes_werk
-    ],
-    image("images/Reinforcement_learning_diagram.svg", width: 8cm)
-  )
-  ]
+  // #only(2)[
+  // #figure(
+  //   // caption: [
+  //   //   Reinforcement Learning. \ Quelle: Wikipedia @vonmegajuice_eigenes_werk
+  //   // ],
+  // )
+  // ]
 ]
 
 #slide(alignment: top)[
@@ -71,12 +72,13 @@
   - Wahrscheinlichkeitsraum $Omega$
   - Indexmenge $cal(T) subset.eq RR$
   - Zielmenge $Z$
-  - $X colon Omega times cal(T) -> Z, (omega, t) mapsto X(omega,t)$
+  - $X colon Omega times cal(T) -> Z, (omega, t) mapsto X(omega,t) colon.eq X_t (omega)$
   #only("2")[
   - z.$thin$B. $Omega = {0,1}, thick Z = RR$
-        #definition(name: "Irrweg (Random Walk)")[
-        $ cases(X_0 &= thick 0, X_n &= thick X_(n-1) + thick  omega_n) $<Irrweg> mit $w_n$ unabhängige und identische verteilte Zufallsvariablen über $Z$. 
-      ]
+    #v(1cm)
+    #definition(name: "Irrweg (Random Walk)")[
+      $ cases(X_0 &= thick 0, X_n &= thick X_(n-1) + thick  omega_n) $<Irrweg> mit $w_n$ unabhängige und identische verteilte Zufallsvariablen über $Z$. 
+    ]
   ]
   #only("2")[
     #place(top + right, float: false, scope: "column")[
@@ -87,9 +89,7 @@
 ]
 
 #slide(alignment: top)[
-  #v(-2cm)
-  === Überlagerung Harmonischer Schwingungen
-  #v(25%)
+  = Überlagerung Harmonischer Schwingungen
   #toolbox.side-by-side[
   - $f(t) = integral_cal(T) a(x) dot sin(omega(x)t - phi(x)) dif x$ #v(0.25em)
   - Zumeist $cal(T)$ abzählbar
@@ -99,47 +99,26 @@
   #only("2-")[
   - $f$ automatisch periodisch
   ]
-  #only(3)[
+  #only(2)[
     - z.$thin$B. $a_i = 1, thin omega_i = i^2, phi_i = 0$ \ für $i in {2, ..., 10}$
   ]
-  #only(4)[
+  #only(3)[
     - z.$thin$B. $a_i = 1, thin omega_i = i^2, phi_i = 0$ \ für $i in {2, ..., 25}$
   ]
-  #only(5)[
+  #only(4)[
     - z.$thin$B. $a_i = 1, thin omega_i = i^2, phi_i = 0$ \ für $i in {2, ..., 50}$
   ]
-  #only(6)[
+  #only(5)[
     - z.$thin$B. $a_i = 1, thin omega_i = i^2, phi_i = 0$ \ für $i in {2, ..., 100}$
   ]
   ][
   #align(horizon + right)[
-    #v(-3cm)
-    #only(3)[#image(width: 15cm, "plots/Überlagerung-10.svg")]
-    #only(4)[#image(width: 15cm, "plots/Überlagerung-25.svg")]
-    #only(5)[#image(width: 15cm, "plots/Überlagerung-50.svg")]
-    #only(6)[#image(width: 15cm, "plots/Überlagerung-100.svg")]
+    #v(-1cm)
+    #only(2)[#image(width: 15cm, "plots/Überlagerung-10.svg")]
+    #only(3)[#image(width: 15cm, "plots/Überlagerung-25.svg")]
+    #only(4)[#image(width: 15cm, "plots/Überlagerung-50.svg")]
+    #only(5)[#image(width: 15cm, "plots/Überlagerung-100.svg")]
     ]
-  ]
-]
-
-#slide(alignment: top)[
-  = Vorteile der Modellierungen
-  #toolbox.side-by-side[
-    === Stochastischer Prozess
-    - Stochastische Größen
-      - Erwartungswert
-      - Varianz
-      - Mittelwert
-      - $dots$
-    - Einfache Modellierung
-    - Bildet Zufall direkt ab
-  ][
-    === Harmonische Schwingungen
-    - Rauschen als glatte Funktion
-    - Periodische Signale
-    - Analyse mit Mitteln der Analysis
-    - Kein Zufall
-    - Physikalisch leichter deutbar
   ]
 ]
 
@@ -223,7 +202,9 @@
       #image("plots/Überlagerung-fft-10.svg")
     ]
   ]
-  #only(3)[
+  #only("3-4")[
+    #toolbox.side-by-side[
+      === Stochastischer Prozess
     #definition(name: [Autokorrelationsfunktion $R_X (tau)$])[
       $R_X (tau)$ beschreibt wie ähnlich das Signal $X$ zu sich selbst ist innerhalb eines Fensters mit Breite $tau$.
   // $ R_X (t_1,t_2)  &colon.eq "E"{X_(t_1)X_(t_2)} \
@@ -231,9 +212,20 @@
   //     $ R_X (t, tau) := R_X (t - tau / 2, t + tau / 2) $
   //     $ R_X (tau) := R_X (t, tau) $
     ]
+    ][
+      === Harmonische Schwingungen
+    #definition(name: "Spektrale Leistungsdichte (PSD)")[
+      Die spektrale Leistungsdichte $S(omega)$ gibt den Energieanteil pro Frequenz $omega = 2 pi f$ an. \
+      \
+      // $ S(omega) := abs(cal(F)(X)(omega))^2 $
+    ]
+    ]
+  ]
+  #only(3)[
+    #v(-1em)
     #toolbox.side-by-side(columns: (1fr, auto, 1fr))[
       #show: align.with(center)
-      #image("plots/rect-signal.svg", width: 10cm)
+      #image("plots/rect-signal.svg", width: 9cm)
     ][
       #align(center + horizon)[
         #show math.equation: set text(size: 32pt)
@@ -242,33 +234,36 @@
       ]
     ][
       #show: align.with(center)
-      #image("plots/rect-acr.svg", width: 10cm)
+      #image("plots/rect-acr.svg", width: 9cm)
     ]
   ]
-  #only("4-5")[
-    #definition(name: "Spektrale Leistungsdichte (PSD)")[
-      Die spektrale Leistungsdichte $S(omega)$ gibt den Energieanteil pro Frequenz $omega = 2 pi f$ an.
-      $ S(omega) := abs(cal(F)(X)(omega))^2 $
-    ]
-  ]
-  #only("5,7")[
+  #only("4,7")[
     - Autokorrelationsfunktion und PSD hängen zusammen
     #set list(marker: $arrow.r.double$)
     - Wiener-Chintschin-Theorem:
   ]
-  #only("5-")[
-$ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)e^(-j omega tau) dif tau $<EqSPD>
+  #only("4-")[
+$ S(omega) colon.eq cal(F)(R(tau))(omega) $<EqSPD>
 
   ]
-  #only(6)[
-    #definition(name: "Beispiel: Irrweg")[
-      $ X = cases(X_0 &= thick 0, X_n &= thick X_(n-1) + thick  omega_n) $
-      Ist $X$ ein Irrweg mit $Q = "Var"(omega_k)$, dann ist 
-      $ S(omega) = Q/(2 sin(omega (Delta t)/2))^2 tilde.eq Q/(omega^2) $
-    ] 
+  #only("5,6")[
+    #toolbox.side-by-side[
+      #definition(name: "Beispiel: Irrweg")[
+        $ X = cases(X_0 &= thick 0, X_n &= thick X_(n-1) + thick  omega_n) $
+        Ist $X$ ein Irrweg mit $Q = "Var"(omega_k)$, dann ist 
+        $ S(omega) = Q/(2 sin(omega (Delta t)/2))^2 tilde.eq Q/(omega^2) $
+      ]
+    ][
+      #only(5)[
+        #image("plots/random_walk.svg", width: 12cm)
+      ]
+      #only(6)[
+        #image("plots/random_walk-psd.svg", width: 12cm)
+      ]
+    ]
   ]
   #only(7)[
-    - Klassifikation durch PSD. Hier: $S(omega) prop 1/omega^alpha$
+    - Rausch-Klassifikation durch PSD. Hier: $S(omega) prop 1/omega^alpha$
   ]
 ]
 
@@ -347,7 +342,7 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
   #show: later
   #definition(name: [Simulation eines stetigen Prozesses])[
     Ein zeitdiskreter Prozess $tilde(X)_k$ mit Schrittweite $Delta t$ simuliert einen zeitstetigen Prozess $X(t, omega)$ falls: \
-    $ R_tilde(X)(k, m) = R_X (k Delta t, m Delta t) $  
+    $ R_tilde(X)(tau) = R_X (tau Delta t) $  
   ]
 
   #reveal-item(start: 1)[
@@ -495,7 +490,7 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
   - Phasenrandomisierung berechnet periodisches Rauschen
   ]
   #only("2-")[
-  - AR-Filter hat "unendliches Gedächtnis"
+  - IIR-Filter hat "unendliches Gedächtnis"
     - Berücksichtigt alle vorherigen Zustände
     - Obwohl $a_k$ endliche Folge
   ]
@@ -503,15 +498,15 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
   - FIR-Filter schlecht für kleines $p$
   ]
   #only("7")[
-  - AR- und FIR-Filter berechnen gleiches Rauschen
-  - AR-Filter ist Echtzeitfähig
+  - IIR- und FIR-Filter berechnen gleiches Rauschen
+  - IIR-Filter ist Echtzeitfähig
   ]
   // - Timmer-Koenig schnell und einfach
   #only(1)[
     #let header = ("Timmer-Koenig", "Phasenrandomisierung", "Fraktionale-Differenzierung").map(x => [
       #pad(bottom: 6mm)[#x]
     ])
-    #set align(center)
+    #set align(center + bottom)
     #grid(columns: 3,
       row-gutter: -4mm,
       ..header,
@@ -519,10 +514,11 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
       figure(image(width: width, "plots/1000/deviation/single-repeated/Phasenrandomisierung-Done-2.svg")),
       figure(image(width: width, "plots/1000/deviation/single-repeated/FracDiffTime-2.svg")),
   )
+    #v(1cm)
   ]
+  #let width = 100%
   #only(2)[
-    #let width = 85%
-    #set align(center)
+    #set align(center + bottom)
     #grid(columns: 3,
       row-gutter: -4mm,
       [#pad(bottom: 6mm)[$p=1$]],
@@ -532,10 +528,10 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
       figure(image(width: width, "plots/FracDiffTime_cutoff_2.svg")),
       figure(image(width: width, "plots/FracDiffTime_cutoff_full.svg")),
     )
+    #v(1cm)
   ]
   #only(3)[
-    #let width = 85%
-    #set align(center)
+    #set align(center + bottom)
     #grid(columns: 3,
       row-gutter: -4mm,
       [#pad(bottom: 6mm)[$p=1$]],
@@ -545,10 +541,10 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
       figure(image(width: width, "plots/FracDiffTime_cutoff_2-psd.svg")),
       figure(image(width: width, "plots/FracDiffTime_cutoff_full-psd.svg")),
     )
+    #v(1cm)
   ]
   #only(4)[
-    #let width = 85%
-    #set align(center)
+    #set align(center + bottom)
     #grid(columns: 3,
       row-gutter: -4mm,
       [#pad(bottom: 6mm)[$p=5$]],
@@ -558,10 +554,10 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
       figure(image(width: width, "plots/FracDiffFreq_cutoff_50.svg")),
       figure(image(width: width, "plots/FracDiffFreq_cutoff_100.svg")),
     )
+    #v(1cm)
   ]
   #only(5)[
-    #let width = 85%
-    #set align(center)
+    #set align(center + bottom)
     #grid(columns: 3,
       row-gutter: -4mm,
       [#pad(bottom: 6mm)[$p=50$]],
@@ -571,10 +567,10 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
       figure(image(width: width, "plots/FracDiffFreq_cutoff_100.svg")),
       figure(image(width: width, "plots/FracDiffFreq_cutoff_500.svg")),
     )
+    #v(1cm)
   ]
   #only(6)[
-    #let width = 85%
-    #set align(center)
+    #set align(center + bottom)
     #grid(columns: 3,
       row-gutter: -4mm,
       [#pad(bottom: 6mm)[$p=100$]],
@@ -584,41 +580,49 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
       figure(image(width: width, "plots/FracDiffFreq_cutoff_500.svg")),
       figure(image(width: width, "plots/FracDiffFreq_cutoff_full.svg")),
     )
-  ]
-
-  #only(3)[
-
+    #v(1cm)
   ]
 ]
 
 #slide()[
   #only(1)[
   = Laufzeit und Speicheraufwand
-    #toolbox.side-by-side[
+    #toolbox.side-by-side(columns: (1fr, auto))[
   #figure(image("time/10000/combined/all.svg"))
   ][
-    #table(columns: 3,
+    #table(columns: 2,
       stroke: none,
       table.hline(y: 1),
       table.vline(x: 1),
-      table.vline(x: 2),
       table.header(
-        [*Algorithmus*], [*Speicher*], [*Laufzeit*]
+        [*Algorithmus*], [*Speicher*]
       ),
-      [Done], [$O(n)$], [$O(n^2)$],
-      [Timmer-Koenig], [$O(n)$], [$O(n log(n))$],
-      [FIR-Filter], [$O(n + p)$], [$O(n log(n) + p)$],
-      [AR-Filter], [$O(p)$], [$O(n dot p)$]
+      [Done], [$O(n)$],
+      [Timmer-Koenig], [$O(n)$], 
+      [FIR-Filter], [$O(n + p)$], 
+      [IIR-Filter], [$O(p)$],
+    )
+    #table(columns: 2,
+      stroke: none,
+      table.hline(y: 1),
+      table.vline(x: 1),
+      table.header(
+        [*Algorithmus*], [*Laufzeit*]
+      ),
+      [Done], [$O(n^2)$],
+      [Timmer-Koenig], [$O(n log(n))$],
+      [FIR-Filter], [$O(n log(n) + p)$],
+      [IIR-Filter], [$O(n dot p)$]
     )
   ]
   ]
-  #only(2)[
-  #place(top + center, float: false, scope: "column")[
-  #scale(170%)[
-    #image("time/10000/combined/all.svg", width: 15cm)
-  ]
-  ]
-  ]
+  // #only(2)[
+  // #place(top + center, float: false, scope: "column")[
+  // #scale(170%)[
+  //   #image("time/10000/combined/all.svg", width: 15cm)
+  // ]
+  // ]
+  // ]
 ]
 
 #slide[
@@ -629,6 +633,7 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
     Rauschen $!=$ Rauschen
   ]
   - Farbiges Rauschen:
+    - PSD $prop 1/(omega^alpha)$ 
     - $alpha$ groß $arrow.r.double$ Niedrige Frequenzen dominieren
   - Verschiedene Möglichkeiten farbige Rauschsamples zu generieren
     - Zeit- und Frequenz-Bereich möglich
@@ -651,6 +656,57 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
 #slide[
   = Quellen
   #bibliography("sliderefs.bib", full: true)
+]
+
+#slide(alignment: top)[
+  = Vorteile der Modellierungen
+  #toolbox.side-by-side[
+    === Stochastischer Prozess
+    - Stochastische Größen
+      - Erwartungswert
+      - Varianz
+      - Mittelwert
+      - $dots$
+    - Einfache Modellierung
+    - Bildet Zufall direkt ab
+  ][
+    === Harmonische Schwingungen
+    - Rauschen als glatte Funktion
+    - Periodische Signale
+    - Analyse mit Mitteln der Analysis
+    - Kein Zufall
+    - Physikalisch leichter deutbar
+  ]
+]
+
+#slide[
+  = Autokorellationsfunktion
+  #definition(name: [Autokorrelationsfunktion $R_X (tau)$])[
+  $R_X (tau)$ beschreibt wie ähnlich das Signal $X$ zu sich selbst ist innerhalb eines Fensters mit Breite $tau$.
+  $ R_X (t_1,t_2)  &colon.eq "E"{X_(t_1)X_(t_2)} \
+                      &thick = integral_(-infinity)^(infinity) integral_(-infinity)^(infinity) x_1 x_2 f_(X X)(t_1, t_2) dif x_1 dif x_2 $
+      $ R_X (t, tau) := R_X (t - tau / 2, t + tau / 2) $
+      $ R_X (tau) := R_X (t, tau) $
+    ]
+]
+
+#slide(alignment: top)[
+  #definition(name: "Spektrale Leistungsdichte (PSD)")[
+    Die spektrale Leistungsdichte $S(omega)$ gibt den Energieanteil pro Frequenz $omega = 2 pi f$ an. 
+    $ S(omega) := abs(cal(F)(X)(omega))^2 $
+  ]
+]
+
+#slide(alignment: top)[
+  = Simulation eines stetigen Prozesses
+  #definition(name: [Simulation eines stetigen Prozesses])[
+    Ein zeitdiskreter Prozess $tilde(X)_k$ mit Schrittweite $Delta t$ simuliert einen zeitstetigen Prozess $X(t, omega)$ falls: \
+    $ R_tilde(X)(k, m) = R_X (k Delta t, m Delta t) $  
+  ]
+  - Autokorrelationsfunktion und PSD hängen zusammen
+  #set list(marker: $arrow.r.double$)
+  - Wiener-Chintschin-Theorem:
+  $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)e^(-j omega tau) dif tau $
 ]
 
 #let width = 75%
@@ -693,6 +749,29 @@ $ S(omega) colon.eq cal(F)(R(tau))(omega) = integral_(-infinity)^infinity R(tau)
     figure(image(width: width, "/plots/1000/FracDiffTime-0-psd.svg")),
     figure(image(width: width, "/plots/1000/FracDiffTime-1-psd.svg")),
     figure(image(width: width, "/plots/1000/FracDiffTime-2-psd.svg")),
+  )
+]
+
+#slide(alignment: center)[
+  = FIR
+  #let width = 8cm
+  #v(-2cm)
+  #grid(columns: 3,
+    row-gutter: -4mm,
+    [#pad(bottom: 6mm)[$p=5$]],
+    [#pad(bottom: 6mm)[$p=50$]],
+    [#pad(bottom: 6mm)[$p=100$]],
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_5-psd.svg")),
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_50-psd.svg")),
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_100-psd.svg")),
+  )
+  #v(-1cm)
+  #grid(columns: 2,
+    row-gutter: -4mm,
+    [#pad(bottom: 6mm)[$p=500$]],
+    [#pad(bottom: 6mm)[$p=1000$]],
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_500-psd.svg")),
+    figure(image(width: width, "plots/FracDiffFreq_cutoff_full-psd.svg")),
   )
 ]
 
